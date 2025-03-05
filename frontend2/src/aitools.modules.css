@@ -1,0 +1,53 @@
+.hover-area {
+          opacity: 0;
+          width: 20px;
+          height: 100%;
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 100;
+        }
+
+        .side-navbar {
+          position: fixed;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 250px;
+          background-color: #333;
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
+          z-index: 99;
+        }
+
+        .hover-area:hover + .side-navbar,
+        .side-navbar:hover {
+          transform: translateX(0);
+        }
+
+        /* Navbar content styling */
+        .side-navbar ul {
+          list-style: none;
+          padding: 2rem 1rem;
+          margin: 0;
+        }
+
+        .side-navbar li {
+          margin-bottom: 1rem;
+        }
+
+        .side-navbar a {
+          color: white;
+          text-decoration: none;
+          font-size: 1.1rem;
+          display: block;
+          padding: 0.5rem 1rem;
+          transition: background-color 0.2s ease;
+        }
+        .side-navbar a:hover {
+          background-color: #444;
+          border-radius: 4px;}
+
+.aitools_fitness >label,input{
+  width:500px;
+}
