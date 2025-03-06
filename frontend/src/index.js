@@ -7,6 +7,9 @@ import { MainApp } from './front';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { AiTools } from './aitools';
+import { AiToolsEmail } from './aitools/email';
+import { AiToolsAdvice } from './aitools/advice';
+import { AiToolsMovieRecommendation } from './aitools/movieRec';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -35,6 +38,9 @@ const App2 = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<DashboardPage />} />
         <Route path="/aitools" element={<AiTools/>} />
+        <Route path="/email" element={<AiToolsEmail/>}/>
+        <Route path="/advice" element={<AiToolsAdvice/>}/>
+        <Route path="/movie" element={<AiToolsMovieRecommendation/>}/>
       </Routes>
     </Router>
   );

@@ -56,7 +56,7 @@ function generateTable(data) {
     // Append the new HTML document to the current document's body
     document.body.innerHTML = body.innerHTML;
 }
- const handleSubmit = async (weight, age,height,activity,reason,preference,message) => {
+async function handleSubmit  (weight, age,height,activity,reason,preference,message) {
   try {
     const fitnessPlanParams={
       weight:weight,
