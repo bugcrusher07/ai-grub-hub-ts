@@ -7,15 +7,34 @@ import { generateFitnessPlan,FitnessPlanParams } from './aitools/fitness';
 import { EmailParams,generateEmails } from './aitools/email';
 import { AdviceParams,generateAdvice } from './aitools/advice';
 import { generateMovieRec, MovieRecParams } from './aitools/movie';
+import { CodeParams,generateCode } from './aitools/code';
+import { DietParams,generateDietPlan } from './aitools/diet';
+import cookieParser from 'cookie-parser';
+import authRoutes from './authRoutes';
+import { authMiddleware } from './auth';
+import { connectDB } from './db';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 5000;
+app.use(cookieParser());
+
+
+connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  credentials:true,
+
+}));
 app.use(express.json());
+app.use('/api/auth', authRoutes);
+
+
+app.get('/api/protected', authMiddleware, (req, res) => {
+  res.json({ message: 'This is a protected route', user: req.user });
+});
 
 
 // Routes
@@ -69,6 +88,22 @@ app.post('/advice',async (req:Request,res:Response)=>{
   }
 })
 
+app.post('/code',async (req:Request,res:Response)=>{
+  console.log("code is executed");
+  try {
+    const params: CodeParams = req.body;
+    const result = await generateCode(params);
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      content: '',
+      error: 'Failed to generate code'
+    });
+  }
+})
+
 app.post('/movie',async (req:Request,res:Response)=>{
   console.log("movie is executed");
   try {
@@ -81,6 +116,22 @@ app.post('/movie',async (req:Request,res:Response)=>{
       success: false,
       content: '',
       error: 'Failed to generate movie recs'
+    });
+  }
+})
+
+app.post('/diet',async (req:Request,res:Response)=>{
+  console.log("diet plan is executed");
+  try {
+    const params: DietParams = req.body;
+    const result = await generateDietPlan(params);
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      content: '',
+      error: 'Failed to generate diet plan'
     });
   }
 })

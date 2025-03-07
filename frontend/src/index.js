@@ -10,6 +10,8 @@ import { AiTools } from './aitools';
 import { AiToolsEmail } from './aitools/email';
 import { AiToolsAdvice } from './aitools/advice';
 import { AiToolsMovieRecommendation } from './aitools/movieRec';
+import { AiToolsCodeSolver } from './aitools/code';
+import { AiToolsDietPlan } from './aitools/diet';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -41,6 +43,8 @@ const App2 = () => {
         <Route path="/email" element={<AiToolsEmail/>}/>
         <Route path="/advice" element={<AiToolsAdvice/>}/>
         <Route path="/movie" element={<AiToolsMovieRecommendation/>}/>
+        <Route path="/code" element={<AiToolsCodeSolver/>}/>
+        <Route path="/diet" element={<AiToolsDietPlan/>}/>
       </Routes>
     </Router>
   );
