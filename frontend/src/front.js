@@ -7,80 +7,7 @@ import AuthApp from './auth';
 import React, {  useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BottomSection = ()=> {
-  return (
-    <div className="footer_wrapper" >
-      <div className='footer_body'>
-        <div className="bottom_section_bar">
-            <h1>Join the AI revolution</h1>
-            <div>
-                <button id="bottom_section_button1" >SUBSCRIPTION OPTIONS</button>
-                <button id="bottom_section_button2">SIGN UP FOR OUR NEWSLETTER</button>
-           </div>
-         </div>
-         <div className="front_bottom_section" style={{backgroundColor:"#0A142F", height:"350px",}} >
-              <div className="front_bottom_container">
-                 <h3>Navigation</h3>
-                 <a>Home</a>
-                 <a>About Us</a>
-                 <a>What We Do</a>
-                 {/* <div className="bottom_tag"></div> */}
-              </div>
-              <div className="front_bottom_container">
-                 <h3>Talk about us</h3>
-                 <a>Encouraging Testing</a>
-                 <a>Strengthening Advocacy</a>
-                 <a>Sharing Information</a>
-                 {/* <div className="bottom_tag"></div> */}
-             </div>
-             <div className="front_bottom_container">
-                 <h3>Legal</h3>
-                 <a>General Info</a>
-                 <a>Privacy Policy</a>
-                 <a>Terms Of Service</a>
-                 {/* <div className="bottom_tag" ></div> */}
-             </div>
-          </div>
-          <div style={{display:"flex",alignItems:"center",flexDirection:"column"}}>
-            <div className='bottom_tag'></div>
-            <div className="front_bottom_bottom" style={{
-                  backgroundColor:"#0A142F",
-                  display: "grid",marginBottom:"15px",
-                  gridTemplateColumns: "1fr auto 1fr",
-                  alignItems: "center",marginTop:"40px",
-                  gap: "20px", width:"900px"}}>
-                  <div style={{ justifySelf: "start",color:"white" }}>AI-Hub</div>
-                  <div style={{color:"white"}}><h4>@2025 Lift Media. All Rights Reserved</h4></div>
-                  <div  style={{ justifySelf: "end" }}>
-                      <a style={{ marginRight: "10px",color:"white",cursor:"pointer" }}>facebook</a>
-                      <a style={{ marginRight: "10px",color:"white",cursor:"pointer" }}>twitter</a>
-                      <a style={{color:"white",cursor:"pointer" }}>mail</a>
-                 </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  )
-}
 
-const ButtonForAI = ()=> {
-  const style = {
-    backgroundColor:"black",
-    width:"200px",
-    height:"35px",
-    border:"transparent",
-    borderRadius:"24px",
-    fontFamily:`"arial",sans-sarif`,
-    fontSize:"1.2rem",
-    fontWeight:"550",
-    position:"relative",
-    cursor:"pointer",
-    color:"white"
-  }
-  return (
-    <button className="div_button" style={style}>Explore</button>
-  )
-}
 
 const MovingStrip = () => {
   const [textStrip, setTextStrip] = useState(3);
@@ -138,14 +65,75 @@ const MovingStrip = () => {
 };
 
 
-const SearchBar = () => {
-return (<div className="search_bar">
-  <input></input>
-</div>)
-}
+  const MySVG = ({handleClick}) => {
+    return(
+<>
+   <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="47"
+      height="47"
+      version="1.1"
+      viewBox="0 0 1200 1200"
+      onClick={handleClick}
+      style={{ backgroundColor: 'transparent' ,marginLeft:"15px",cursor:"pointer",border:"none",padding:"none"}}
+    >
+      <path d="m900 286.8c-84-84-194.4-129.6-313.2-129.6-117.6 0-229.2 45.602-313.2 129.6-172.8 172.8-172.8 453.6 0 625.2 84 84 194.4 129.6 313.2 129.6 117.6 0 229.2-45.602 313.2-129.6 172.8-171.6 172.8-452.4 0-625.2zm-10.801 615.6c-80.398 80.398-188.4 124.8-302.4 124.8s-222-44.398-302.4-124.8c-166.8-166.8-166.8-438 0-604.8 80.398-80.398 188.4-124.8 302.4-124.8s222 44.398 302.4 124.8c166.8 166.8 166.8 438 0 604.8zm-174-420-121.2 121.2 121.2 121.2c2.3984 2.3984 2.3984 7.1992 0 10.801-1.1992 1.1992-3.6016 2.3984-4.8008 2.3984-2.3984 0-3.6016-1.1992-4.8008-2.3984l-122.4-121.2-121.2 121.2c-1.1992 1.1992-3.6016 2.3984-4.8008 2.3984-2.3984 0-3.6016-1.1992-4.8008-2.3984-2.3984-2.3984-2.3984-7.1992 0-10.801l121.2-121.2-122.4-121.2c-2.3984-2.3984-2.3984-7.1992 0-10.801 2.3984-2.3984 7.1992-2.3984 10.801 0l121.2 121.2 121.2-121.2c2.3984-2.3984 7.1992-2.3984 10.801 0 2.4023 3.6016 2.4023 8.4023 0 10.801z" />
+  </svg>
+</>
+    )
+  }
+  export default MySVG;
+
+const SearchBar = ({onClick}) => {
+  const [style,setStyle] = useState(null);
+  const [input,setInput] = useState(null);
+   const noInputStyle ={
+    display:"none"
+  }
+  const inputStyle={
+    display:"block"
+  }
+
+
+  return (
+  <div className="search_bar_wrapper_front" >
+    <div className="input_wrapper_front" >
+      <input className="input_search_front"  onChange={(e)=>{setInput(e.target.value); setStyle(inputStyle);if(!e.target.value){setStyle(noInputStyle)}}}>
+      </input>
+      {/* <button className='button_search_front'><MySVG/></button> */}
+      <MySVG handleClick={onClick}/>
+    </div>
+    <div className="search_result_wrapper">
+       <div className="search_results_front" style={style}></div>
+    </div>
+  </div>)
+  }
 
 
 const logoAddress = "/logoIMG.png"
+
+
+
+
+export const Logo = ()=> {
+  return (
+  <div ><img className="logo_front" src={logoAddress} alt="Brand" /></div>
+  )
+}
+
+function MidMenuTopBar(){
+  return  (
+    <div className='mid_menu_bar'>
+        <a>Pricing</a>
+        <a>Plans</a>
+        <a>Products</a>
+        <a>Demonstration</a>
+        <a>Job</a>
+        <a>Lorem</a>
+    </div>
+  )
+
+}
 
 export const MenuFront = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -173,29 +161,93 @@ export const MenuFront = () => {
   );
 }
 
-
-export const Logo = ()=> {
+const ButtonForAI = ()=> {
+  const style = {
+    backgroundColor:"black",
+    width:"200px",
+    height:"35px",
+    border:"transparent",
+    borderRadius:"24px",
+    fontFamily:`"arial",sans-sarif`,
+    fontSize:"1.2rem",
+    fontWeight:"550",
+    position:"relative",
+    cursor:"pointer",
+    color:"white"
+  }
   return (
-  <div ><img className="logo_front" src={logoAddress} alt="Brand" /></div>
+    <button className="div_button" style={style}>Explore</button>
+  )
+}
+;
+
+const BottomSection = ()=> {
+  return (
+    <div className="footer_wrapper" >
+      <div className='footer_body'>
+        <div className="bottom_section_bar">
+            <h1>Join the AI revolution</h1>
+            <div>
+                <button id="bottom_section_button1" >SUBSCRIPTION OPTIONS</button>
+                <button id="bottom_section_button2">SIGN UP FOR OUR NEWSLETTER</button>
+           </div>
+         </div>
+         <div className="front_bottom_section" style={{backgroundColor:"#0A142F", height:"350px",}} >
+              <div className="front_bottom_container">
+                 <h3>Navigation</h3>
+                 <a>Home</a>
+                 <a>About Us</a>
+                 <a>What We Do</a>
+                 {/* <div className="bottom_tag"></div> */}
+              </div>
+              <div className="front_bottom_container">
+                 <h3>Talk about us</h3>
+                 <a>Encouraging Testing</a>
+                 <a>Strengthening Advocacy</a>
+                 <a>Sharing Information</a>
+                 {/* <div className="bottom_tag"></div> */}
+             </div>
+             <div className="front_bottom_container">
+                 <h3>Legal</h3>
+                 <a>General Info</a>
+                 <a>Privacy Policy</a>
+                 <a>Terms Of Service</a>
+                 {/* <div className="bottom_tag" ></div> */}
+             </div>
+          </div>
+          <div style={{display:"flex",alignItems:"center",flexDirection:"column"}}>
+            <div className='bottom_tag'></div>
+            <div className="front_bottom_bottom" style={{
+                  backgroundColor:"#0A142F",
+                  display: "grid",marginBottom:"15px",
+                  gridTemplateColumns: "1fr auto 1fr",
+                  alignItems: "center",marginTop:"40px",
+                  gap: "20px", width:"900px"}}>
+                  <div style={{ justifySelf: "start",color:"white" }}>AI-Hub</div>
+                  <div style={{color:"white"}}><h4>@2025 Lift Media. All Rights Reserved</h4></div>
+                  <div  style={{ justifySelf: "end" }}>
+                      <a style={{ marginRight: "10px",color:"white",cursor:"pointer" }}>facebook</a>
+                      <a style={{ marginRight: "10px",color:"white",cursor:"pointer" }}>twitter</a>
+                      <a style={{color:"white",cursor:"pointer" }}>mail</a>
+                 </div>
+            </div>
+          </div>
+        </div>
+      </div>
   )
 }
 
-function MidMenuTopBar(){
-  return  (
-    <div className='mid_menu_bar'>
-        <a>Pricing</a>
-        <a>Plans</a>
-        <a>Products</a>
-        <a>Demonstration</a>
-        <a>Job</a>
-        <a>Lorem</a>
-    </div>
-  )
-
-}
 
 export  const MainApp = () => {
     const navigate = useNavigate();
+    const [search,setSearch]= useState(false)
+
+  function handleSearchClick(){
+    setSearch(true);
+  }
+  function closeSearch(){
+    setSearch(false)
+  }
 
   const handleLogin = () => {
     navigate('/auth');
@@ -205,8 +257,9 @@ return(
 <div className="main_Header_Front">
 <Logo />
 <MidMenuTopBar />
-<button id="front_search"  ><img src="/search2.png" alt="Search"></img></button>
+<button id="front_search" onClick={handleSearchClick} ><img src="/search2.png" alt="Search"></img></button>
 <button id="front_signIn" onClick={handleLogin} >SIGN IN</button>
+{search&& <SearchBar onClick={closeSearch}/>}
 <MenuFront />
 </div>
 <MovingStrip/>
