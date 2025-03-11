@@ -50,7 +50,7 @@ const MovingStrip = () => {
           animation: "ticker 6s linear infinite"
             }}
           >
-            AI is a highly innovative technology but it should be used and treated as what it really is: A clever tool to amplify human potential
+            AI is a highly innovative technology but it should be used and treated as what it really is, a clever tool to amplify human potential
           </span>
         ))}
       </div>
@@ -84,31 +84,196 @@ const MovingStrip = () => {
   }
   export default MySVG;
 
-const SearchBar = ({onClick}) => {
-  const [style,setStyle] = useState(null);
-  const [input,setInput] = useState(null);
-   const noInputStyle ={
-    display:"none"
-  }
-  const inputStyle={
-    display:"block"
-  }
+// const SearchBar = ({onClick}) => {
+//   const [style,setStyle] = useState(null);
+//   const [input,setInput] = useState(null);
+//   const noInputStyle ={
+//     display:"none"
+//   }
+//   const inputStyle={
+//     display:"block"
+//   }
+//   const noSearchResultStyle={
+//     display:"block",
+//     backgroundColor:"white"
+//   }
+//   function returnQueryResult(params){
+//     if(params==null){
+//       setStyle(noSearchResultStyle);
+//     }
+//   }
 
+//   return (
+//   <div className="search_bar_wrapper_front" >
+//     <div className="input_wrapper_front" >
+//       <input className="input_search_front"  onChange={
+//         (e)=>{
+//         setInput(e.target.value);
+//         setStyle(inputStyle);
+//         if(!e.target.value){
+//           setStyle(noInputStyle)
+//          }
+//         }}>
+//       </input>
+//       {/* <button className='button_search_front'><MySVG/></button> */}
+//       <MySVG handleClick={onClick}/>
+//     </div>
+//     <div className="search_result_wrapper">
+//        <div className="search_results_front" style={style}>
+//           <AiToolsContainer searchQuery={input} shouldFilter={true} returnQueryResult={returnQueryResult}/>
+//        </div>
+//     </div>
+//   </div>
+//   )
+// }
+// const SearchBar = ({ onClick }) => {
+//   const [style, setStyle] = useState(null);
+//   const [input, setInput] = useState("");
+//   const [hasResults, setHasResults] = useState(true); // Track if there are results
+
+//   const noInputStyle = {
+//     display: "none",
+//   };
+
+//   const inputStyle = {
+//     display: "block",
+//   };
+
+//   // Function to update the `hasResults` state
+//   const returnQueryResult = (filteredTools) => {
+//     setHasResults(filteredTools.length > 0); // Update state based on whether there are results
+//   };
+
+//   return (
+//     <div className="search_bar_wrapper_front">
+//       <div className="input_wrapper_front">
+//         <input
+//           className="input_search_front"
+//           onChange={(e) => {
+//             setInput(e.target.value);
+//             setStyle(inputStyle);
+//             if (!e.target.value) {
+//               setStyle(noInputStyle);
+//             }
+//           }}
+//         />
+//         <MySVG handleClick={onClick} />
+//       </div>
+//       <div className="search_result_wrapper">
+//         <div
+//           className="search_results_front"
+//           style={{
+//             ...style, // Apply the existing style (display: block/none)
+//             backgroundColor: hasResults ? "transparent" : "white", // Set background color based on `hasResults`
+//           }}
+//         >
+//           <AiToolsContainer
+//             searchQuery={input}
+//             shouldFilter={true}
+//             returnQueryResult={returnQueryResult}
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+// const SearchBar = ({ onClick }) => {
+//   // Initialize style with noInputStyle instead of null
+//   const [style, setStyle] = useState(noInputStyle);
+//   const [input, setInput] = useState("");
+//   const [hasResults, setHasResults] = useState(true);
+
+//   const noInputStyle = {
+//     display: "none",
+//   };
+//   const inputStyle = {
+//     display: "block",
+//   };
+
+//   // Function to update the `hasResults` state
+//   const returnQueryResult = (filteredTools) => {
+//     setHasResults(filteredTools.length > 0);
+//   };
+
+//   return (
+//     <div className="search_bar_wrapper_front">
+//       <div className="input_wrapper_front">
+//         <input
+//           className="input_search_front"
+//           onChange={(e) => {
+//             setInput(e.target.value);
+//             setStyle(e.target.value ? inputStyle : noInputStyle);
+//           }}
+//         />
+//         <MySVG handleClick={onClick} />
+//       </div>
+//       <div className="search_result_wrapper">
+//         <div
+//           className="search_results_front"
+//           style={{
+//             ...style,
+//             backgroundColor: hasResults ? "transparent" : "white",
+//           }}
+//         >
+//           <AiToolsContainer
+//             searchQuery={input}
+//             shouldFilter={true}
+//             returnQueryResult={returnQueryResult}
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+const SearchBar = ({ onClick }) => {
+  // Define style constants first before using them in useState
+  const noInputStyle = {
+    display: "none",
+  };
+  const inputStyle = {
+    display: "block",
+  };
+
+  // Now use the constants in useState
+  const [style, setStyle] = useState(noInputStyle);
+  const [input, setInput] = useState("");
+  const [hasResults, setHasResults] = useState(true);
+
+  // Function to update the `hasResults` state
+  const returnQueryResult = (filteredTools) => {
+    setHasResults(filteredTools.length > 0);
+  };
 
   return (
-  <div className="search_bar_wrapper_front" >
-    <div className="input_wrapper_front" >
-      <input className="input_search_front"  onChange={(e)=>{setInput(e.target.value); setStyle(inputStyle);if(!e.target.value){setStyle(noInputStyle)}}}>
-      </input>
-      {/* <button className='button_search_front'><MySVG/></button> */}
-      <MySVG handleClick={onClick}/>
+    <div className="search_bar_wrapper_front">
+      <div className="input_wrapper_front">
+        <input
+          className="input_search_front"
+          onChange={(e) => {
+            setInput(e.target.value);
+            setStyle(e.target.value ? inputStyle : noInputStyle);
+          }}
+        />
+        <MySVG handleClick={onClick} />
+      </div>
+      <div className="search_result_wrapper">
+        <div
+          className="search_results_front"
+          style={{
+            ...style,
+            backgroundColor: hasResults ? "transparent" : "white",
+          }}
+        >
+          <AiToolsContainer
+            searchQuery={input}
+            shouldFilter={true}
+            returnQueryResult={returnQueryResult}
+          />
+        </div>
+      </div>
     </div>
-    <div className="search_result_wrapper">
-       <div className="search_results_front" style={style}></div>
-    </div>
-  </div>)
-  }
-
+  );
+};
 
 const logoAddress = "/logoIMG.png"
 
@@ -178,8 +343,145 @@ const ButtonForAI = ()=> {
   return (
     <button className="div_button" style={style}>Explore</button>
   )
-}
-;
+};
+// const AiToolsContainer = ({ searchQuery, shouldFilter ,returnQueryResult}) => {
+//   const tools = [
+//     { name: "letter", img: "/first2.jpg" },
+//     { name: "fitness", img: "fitfirst.jpg" },
+//     { name: "code", img: "aicode1.jpg" },
+//     { name: "advice", img: "first2.jpg" },
+//     { name: "movie", img: "first3.jpg" },
+//     { name: "diet", img: "first4.jpg" },
+//     { name: "presentation", img: "fit2.jpg" },
+//     { name: "resume", img: "first1.jpg" },
+//   ];
+//   if(searchQuery ==null){
+//     searchQuery="_"
+//   }
+
+//   const filteredTools = shouldFilter
+//     ? tools.filter((tool) =>
+//         tool.name.toLowerCase().includes(searchQuery.toLowerCase())
+//       )
+//       : tools;
+
+//   returnQueryResult(filteredTools);
+
+//   return (
+//     <div className="ai_container_wrapper">
+//       {filteredTools.length > 0 ? (
+//         <div className="ai_container">
+//           {filteredTools.map((tool, index) => (
+//             <div key={index} style={{ zIndex: "0" }}>
+//               <img src={tool.img} alt={tool.name} />
+//               <ButtonForAI />
+//             </div>
+//           ))}
+//         </div>
+//       ) : (
+//         <div className="no-results-message">
+//           <h1>
+//           No results found for "{searchQuery}"
+//           </h1>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// AiToolsContainer.defaultProps = {
+//   shouldFilter: false,
+// };
+// const AiToolsContainer = ({ searchQuery, shouldFilter, returnQueryResult }) => {
+//   const tools = [
+//     { name: "letter", img: "/first2.jpg" },
+//     { name: "fitness", img: "fitfirst.jpg" },
+//     { name: "code", img: "aicode1.jpg" },
+//     { name: "advice", img: "first2.jpg" },
+//     { name: "movie", img: "first3.jpg" },
+//     { name: "diet", img: "first4.jpg" },
+//     { name: "presentation", img: "fit2.jpg" },
+//     { name: "resume", img: "first1.jpg" },
+//   ];
+
+//   if (searchQuery == null) {
+//     searchQuery = "_";
+//   }
+
+//   const filteredTools = shouldFilter
+//     ? tools.filter((tool) =>
+//         tool.name.toLowerCase().includes(searchQuery.toLowerCase())
+//       )
+//     : tools;
+
+//   // Call the `returnQueryResult` function with the filtered tools
+//   returnQueryResult(filteredTools);
+
+//   return (
+//     <div className="ai_container_wrapper">
+//       {filteredTools.length > 0 ? (
+//         <div className="ai_container">
+//           {filteredTools.map((tool, index) => (
+//             <div key={index} style={{ zIndex: "0" }}>
+//               <img src={tool.img} alt={tool.name} />
+//               <ButtonForAI />
+//             </div>
+//           ))}
+//         </div>
+//       ) : (
+//         <div className="no-results-message">
+//           <h1>No results found for "{searchQuery}"</h1>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+const AiToolsContainer = ({ searchQuery, shouldFilter, returnQueryResult }) => {
+  const tools = [
+    { name: "letter", img: "/first2.jpg" },
+    { name: "fitness", img: "fitfirst.jpg" },
+    { name: "code", img: "aicode1.jpg" },
+    { name: "advice", img: "first2.jpg" },
+    { name: "movie", img: "first3.jpg" },
+    { name: "diet", img: "first4.jpg" },
+    { name: "presentation", img: "fit2.jpg" },
+    { name: "resume", img: "first1.jpg" },
+  ];
+
+  if (searchQuery == null) {
+    searchQuery = "_";
+  }
+
+  const filteredTools = shouldFilter
+    ? tools.filter((tool) =>
+        tool.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : tools;
+
+  // Only call returnQueryResult if it exists
+  if (typeof returnQueryResult === 'function') {
+    returnQueryResult(filteredTools);
+  }
+
+  return (
+    <div className="ai_container_wrapper">
+      {filteredTools.length > 0 ? (
+        <div className="ai_container">
+          {filteredTools.map((tool, index) => (
+            <div key={index} style={{ zIndex: "0" }}>
+              <img src={tool.img} alt={tool.name} />
+              <ButtonForAI />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="no-results-message">
+          <h1>No results found for "{searchQuery}"</h1>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const BottomSection = ()=> {
   return (
@@ -252,6 +554,9 @@ export  const MainApp = () => {
   const handleLogin = () => {
     navigate('/auth');
   };
+   const dummyReturnQueryResult = () => {
+    // This function doesn't need to do anything
+  };
 return(
 <div className="front_app" >
 <div className="main_Header_Front">
@@ -263,52 +568,7 @@ return(
 <MenuFront />
 </div>
 <MovingStrip/>
-<div  className='ai_container_wrapper'>
-  <div className="ai_container">
-  <div style={{zIndex:"0"}} >
-    {/* ai letter and email */}
-    <img src="/first2.jpg"   />
-    <ButtonForAI />
-  </div>
-<div style={{zIndex:"0"}}>
-    {/* fitness plan */}
-    <img src="fitfirst.jpg" />
-    <ButtonForAI />
-  </div>
-  <div style={{zIndex:"0"}}>
-    {/* solving code issues */}
-    <img src="aicode1.jpg" />
-    <ButtonForAI />
-  </div>
-  <div style={{zIndex:"0"}}>
-    {/* ai advice */}
-    <img src="first2.jpg" />
-    <ButtonForAI />
-  </div>
-  <div style={{zIndex:"0"}}>
-    {/*ai movie recommendation */}
-    <img src="first3.jpg" />
-    <ButtonForAI />
-
-  </div>
-  <div style={{zIndex:"0"}}>
-    {/* Diet Plan */}
-    <img src="first4.jpg" />
-    <ButtonForAI />
-  </div>
-  <div style={{zIndex:"0"}}>
-    {/* AI Presentation */}
-    <img src="fit2.jpg" />
-    <ButtonForAI />
-
-  </div>
-  <div style={{zIndex:"0"}}>
-    {/* AI resume */}
-    <img src="first1.jpg" />
-    <ButtonForAI />
-  </div>
-  </div>
-</div>
+<AiToolsContainer searchQuery={"e"} shouldFilter={false} returnQueryResult={dummyReturnQueryResult}/>
 <BottomSection/>
 </div>
 )

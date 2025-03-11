@@ -149,6 +149,8 @@ border:none;
 }
 
 .ai_container_wrapper{
+  height: 100%;
+  width: 100%;
   display:flex;
   justify-content: center;
 }
@@ -368,4 +370,14 @@ border-bottom-left-radius: 10px;
   background-color:rgba(0, 0, 0, 0.611);
   width:100vw;
   height: 100%;
+}
+
+.no-results-message{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  text-align: center ;
+  color:black;
+  justify-content: center;
+  align-items: center;
 }
