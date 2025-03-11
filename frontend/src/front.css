@@ -372,7 +372,7 @@ border-bottom-left-radius: 10px;
   height: 100%;
 }
 
-.no-results-message{
+.no_results_message{
   height: 100%;
   width: 100%;
   display: flex;
@@ -380,4 +380,10 @@ border-bottom-left-radius: 10px;
   color:black;
   justify-content: center;
   align-items: center;
+}
+.no_results_message>h1{
+  background-color: white;
+  border:solid white;
+  border-width: 20px;
+  border-radius: 10px;
 }
