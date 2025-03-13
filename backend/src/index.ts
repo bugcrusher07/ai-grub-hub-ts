@@ -14,6 +14,8 @@ import authRoutes from './authRoutes';
 import { authMiddleware } from './auth';
 import { connectDB } from './db';
 
+export const JWT_SECRET = process.env.JWT_SECRET || "bitches dis da secretkey";
+
 dotenv.config();
 
 const app: Express = express();
@@ -25,6 +27,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
+  origin: 'http://localhost:3000',
   credentials:true,
 
 }));
@@ -33,7 +36,7 @@ app.use('/api/auth', authRoutes);
 
 
 app.get('/api/protected', authMiddleware, (req, res) => {
-  res.json({ message: 'This is a protected route', user: req.user });
+  res.status(200).json({ message: 'This is a protected route', user: req.user });
 });
 
 
@@ -56,6 +59,7 @@ app.post('/fitness-plan', async (req: Request, res: Response) => {
     });
   }
 });
+
 app.post('/email',async (req:Request,res:Response)=>{
   console.log("email is executed");
   try {

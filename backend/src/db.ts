@@ -14,6 +14,5 @@ export const connectDB = async (): Promise<void> => {
       console.error('Error Stack:', error.stack);
     }
     process.exit(1)
-    process.exit(1);
   }
 };

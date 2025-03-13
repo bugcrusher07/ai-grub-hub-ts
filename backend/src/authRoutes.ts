@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import User from './user';
 import mongoose from 'mongoose';
+import { authMiddleware } from './auth';
+// import { JWT_SECRET } from '.';
 
 interface UserRegisterParams{
   username:string,
@@ -22,10 +24,11 @@ interface UserSignInWithEmail {
 }
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key" ;
 
 // Register a new user
 router.post('/register', async (req: Request, res: Response) => {
+      console.log("Register test is working");
       if (mongoose.connection.readyState !== 1) {
       return res.status(500).json({
         message: 'Database connection is not ready. Try again later.'
@@ -57,7 +60,9 @@ router.post('/register', async (req: Request, res: Response) => {
       res.cookie('token', token, {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-        secure: process.env.NODE_ENV === 'production' // Use secure in production
+        secure: process.env.NODE_ENV === 'production', // Use secure in production,
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        domain: 'localhost'
       });
 
       res.status(201).json({
@@ -76,6 +81,7 @@ router.post('/login', async (req: Request, res: Response) => {
   console.log("login was attempted")
   try {
     const { username,email, password }:UserSignInWithEmail | UserSignInWithUsername = req.body;
+    console.log(`username ${username}, email ${email} password ${password}`)
 
     // Find user by email
     let user= null;
@@ -127,13 +133,14 @@ router.post('/logout', (req: Request, res: Response) => {
 });
 
 // Get current user (protected route)
-router.get('/me', async (req: Request, res: Response) => {
+router.get('/me',authMiddleware, async (req: Request, res: Response) => {
+  console.log("me route executed")
   try {
     const user = await User.findById(req.user?.id).select('-password');
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    res.json(user);
+    res.status(200).json(user);
   } catch (error:any) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
