@@ -2,12 +2,59 @@ import './front.css';
 import { useState , useLayoutEffect, useCallback} from 'react';
 import AuthApp from './auth';
 
-
-
 import React, {  useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { backgroundBlurriness } from 'three/webgpu';
 
 
+const UserProfile = ({ User }) => {
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [date, setDate] = useState(null);
+  const [isDetails, setIsDetails] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
+
+  // Use useEffect to set state values based on props
+  useEffect(() => {
+  if (!User) {
+    setIsDetails(false);
+    return;
+  }
+
+  // Set email, username, and date
+  setEmail(User.email || null);
+  setUsername(User.username || null);
+  setDate(User.createdAt || null);
+
+  // Check if all required fields are valid
+  const allFieldsValid = User.email && User.username && User.createdAt;
+  setIsDetails(allFieldsValid);
+}, [User]);
+
+  const buttonStyle = {
+    height:"40px",
+    width: "40px",
+    backgroundColor:"green",
+    cursor:"pointer"
+  };
+  console.log(`emails is ${email} date is ${date} username is ${username} isDetails ${isDetails}`)
+
+  return (
+    <div className="bigbruh">
+      <button
+        style={buttonStyle}
+        onClick={() => setIsClicked(prevState => !prevState)}
+      ></button>
+      {isClicked && isDetails && (
+        <div className="user_detail_front">
+          <div>{email}</div>
+          <div>{username}</div>
+          <div>{date}</div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const MovingStrip = () => {
   const [textStrip, setTextStrip] = useState(3);
@@ -323,6 +370,38 @@ const BottomSection = ()=> {
 export  const MainApp = () => {
     const navigate = useNavigate();
     const [search,setSearch]= useState(false)
+    const [isNotSignedIn,setIsNotSignedIn]=useState(false);
+    const [userProfileProp,setUserProfileProp]=useState(null)
+    useEffect(()=>{
+    async function fetchingUser(){
+    try{
+    const isExistingUser = await fetch('http://localhost:3000/api/api/auth/me',{
+      credentials:'include'
+     },)
+
+    // This is what isExistingUser looks like
+    // {"_id": "67d306073239297e7d78c6eb",
+    // "username": "bigman4",
+    // "email": "bigman4@gmail.com",
+    // "createdAt": "2025-03-13T16:21:27.020Z",
+    // "updatedAt": "2025-03-13T16:21:27.020Z",
+    // "__v": 0}
+
+
+     if ( isExistingUser.status==401 ){
+         setIsNotSignedIn(true);
+
+     }else if(isExistingUser.status==200){
+          setIsNotSignedIn(false);
+          const data = await isExistingUser.json();
+          setUserProfileProp(data);
+     }
+
+    }catch(error){
+      console.log("error is ",error);
+    }}
+    fetchingUser();
+    },[])
 
   function handleSearchClick(){
     setSearch(true);
@@ -337,13 +416,14 @@ export  const MainApp = () => {
    const dummyReturnQueryResult = () => {
     // This function doesn't need to do anything
   };
+  console.log("userProfileProp is ",userProfileProp)
 return(
 <div className="front_app" >
 <div className="main_Header_Front">
 <Logo />
 <MidMenuTopBar />
 <button id="front_search" onClick={handleSearchClick} ><img src="/search2.png" alt="Search"></img></button>
-<button id="front_signIn" onClick={handleLogin} >SIGN IN</button>
+{isNotSignedIn==true?<button id="front_signIn" onClick={handleLogin} >SIGN IN</button>: <UserProfile User={userProfileProp}/>  }
 {search&& <SearchBar onClick={closeSearch}/>}
 <MenuFront />
 </div>

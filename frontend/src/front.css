@@ -387,3 +387,15 @@ border-bottom-left-radius: 10px;
   border-width: 20px;
   border-radius: 10px;
 }
+
+.user_detail_front{
+  position: absolute;
+  height:400px;
+  width:400px;
+  background-color: cyan;
+  left:800px;
+  z-index: 999;
+}
+.user_detail_front>div{
+  color:black;
+}
