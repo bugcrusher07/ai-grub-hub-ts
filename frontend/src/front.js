@@ -4,10 +4,10 @@ import AuthApp from './auth';
 
 import React, {  useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { backgroundBlurriness } from 'three/webgpu';
+import { backgroundBlurriness, temp } from 'three/webgpu';
 
 
-const UserProfile = ({ User }) => {
+export const UserProfile = ({ User }) => {
   const [username, setUsername] = useState(null);
   const [email, setEmail] = useState(null);
   const [date, setDate] = useState(null);
@@ -366,7 +366,18 @@ const BottomSection = ()=> {
   )
 }
 
-
+export async function getUser(){
+  try{
+  const response = await fetch('http://localhost:3000/api/api/auth/me',{
+    credentials:'include'
+  })
+  console.log("getUser try res ",response);
+  return response;
+  }catch(error){
+    console.log("getUser catch ", error)
+    return null;
+  }
+}
 export  const MainApp = () => {
     const navigate = useNavigate();
     const [search,setSearch]= useState(false)
@@ -375,9 +386,7 @@ export  const MainApp = () => {
     useEffect(()=>{
     async function fetchingUser(){
     try{
-    const isExistingUser = await fetch('http://localhost:3000/api/api/auth/me',{
-      credentials:'include'
-     },)
+    const isExistingUser = getUser();
 
     // This is what isExistingUser looks like
     // {"_id": "67d306073239297e7d78c6eb",

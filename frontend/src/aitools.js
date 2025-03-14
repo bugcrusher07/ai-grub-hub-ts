@@ -4,8 +4,21 @@ import { AiToolsEmail } from './aitools/email';
 import { AiToolsFitness } from './aitools/fitness';
 import FitnessPlan from './aitools/fitness';
 import { FitnessPlan2 } from './aitools/fitness2';
+import { UserProfile } from './front';
+import { getUser,getUserJson } from './front';
+import { useInsertionEffect, useState,useEffect } from 'react';
+import { useUser } from './userService';
+import { AiToolsAdvice } from './aitools/advice';
+import { AiToolsMovieRecommendation } from './aitools/movieRec';
+import { AiToolsCodeSolver } from './aitools/code';
+import { AiToolsDietPlan } from './aitools/diet';
+
 
 const AiToolsNavBar =()=>{
+  console.log("use effect is rendering")
+  // const [userId,setUserId]=useState(null);
+  const { user, loading, error } = useUser();;
+
 
   return(
             <div  style={{
@@ -16,6 +29,10 @@ const AiToolsNavBar =()=>{
                   <div style={{ justifySelf: "start",color:"white" }}><Logo/></div>
                   <div ><h2>AI innit</h2></div>
                   <div  style={{ justifySelf: "end" }}>
+                     {loading ? (<div>Loading...</div>  ) : error ? (
+                  <div>Error: {error}</div>
+                   ) : (
+                  <UserProfile User={user} />    )}
                     <MenuFront/>
                  </div>
                  </div>
@@ -43,14 +60,32 @@ const HoverNavbar = () => {
 
 
 
-export const AiTools =()=>{
+export const AiTools =({toolName})=>{
+    const renderTool = () => {
+    switch (toolName) {
+      case "fitness":
+        return <FitnessPlan />;
+      case "email":
+        return <AiToolsEmail />;
+      case "advice":
+        return <AiToolsAdvice />;
+      case "movie":
+        return <AiToolsMovieRecommendation />;
+      case "code":
+        return <AiToolsCodeSolver/>
+      case "diet":
+        return <AiToolsDietPlan/>
+      default:
+        return <div>Select a tool</div>; // Fallback UI
+    }
+  };
   return(
     <div>
     <AiToolsNavBar/>
     <HoverNavbar/>
     {/* <AiToolsFitness/> */}
     {/* <FitnessPlan/> */}
-    <FitnessPlan2/>
+    {renderTool()}
     {/* <AiToolsEmail /> */}
     </div>
   )

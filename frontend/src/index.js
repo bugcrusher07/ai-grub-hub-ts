@@ -39,12 +39,12 @@ const App2 = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<DashboardPage />} />
-        <Route path="/aitools" element={<AiTools/>} />
-        <Route path="/email" element={<AiToolsEmail/>}/>
-        <Route path="/advice" element={<AiToolsAdvice/>}/>
-        <Route path="/movie" element={<AiToolsMovieRecommendation/>}/>
-        <Route path="/code" element={<AiToolsCodeSolver/>}/>
-        <Route path="/diet" element={<AiToolsDietPlan/>}/>
+        <Route path="/fitness" element={<AiTools toolName="fitness" />} />
+        <Route path="/email" element={<AiTools toolName="email" />}/>
+        <Route path="/advice" element={<AiTools toolName="advice" />}/>
+        <Route path="/movie" element={<AiTools toolName="movie" />}/>
+        <Route path="/code" element={<AiTools toolName="code" />}/>
+        <Route path="/diet" element={<AiTools toolName="diet" />}/>
       </Routes>
     </Router>
   );
