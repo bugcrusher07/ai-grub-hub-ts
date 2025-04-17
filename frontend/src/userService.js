@@ -31,6 +31,7 @@ export function useUser() {
   useEffect(() => {
     const getUser = async () => {
       setLoading(true);
+
       const result = await fetchUserData();
 
       if (result.success) {
@@ -44,5 +45,5 @@ export function useUser() {
     getUser();
   }, []);
 
-  return { user, loading, error };
+  return { user, loading, error,setError };
 }

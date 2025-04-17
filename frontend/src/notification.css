@@ -1,0 +1,39 @@
+.notification_wrapper{
+  position:fixed;
+  left:0%;
+  top: 5%;
+  display:flex;
+  height:50px;
+  z-index: 600;
+  width: 100%;
+  justify-content: center;
+}
+
+.incoming_ani{
+  animation-name: notiAniIncoming;
+  animation-duration: 0.5s;
+}
+.outgoing_ani{
+  animation-name: notiAniOutgoing;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+@keyframes notiAniIncoming {
+  0%{
+    top:0%;
+  }
+  100%{
+    top:5%;
+  }
+}
+@keyframes notiAniOutgoing {
+
+  0%{ top:5%; }
+  100%{ top:-10% }
+}
+
+.notification_container{
+  background-color: red;
+  width:300px;
+  color:white;
+}

@@ -17,7 +17,7 @@ import { AiToolsDietPlan } from './aitools/diet';
 const AiToolsNavBar =()=>{
   console.log("use effect is rendering")
   // const [userId,setUserId]=useState(null);
-  const { user, loading, error } = useUser();;
+  const { user, loading, error } = useUser();
 
 
   return(
@@ -64,7 +64,7 @@ export const AiTools =({toolName})=>{
     const renderTool = () => {
     switch (toolName) {
       case "fitness":
-        return <FitnessPlan />;
+        return <FitnessPlan2 />;
       case "email":
         return <AiToolsEmail />;
       case "advice":

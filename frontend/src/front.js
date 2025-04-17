@@ -1,6 +1,8 @@
 import './front.css';
 import { useState , useLayoutEffect, useCallback} from 'react';
 import AuthApp from './auth';
+import { useUser } from './userService';
+import { Notification } from './notification';
 
 import React, {  useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -380,38 +382,20 @@ export async function getUser(){
 }
 export  const MainApp = () => {
     const navigate = useNavigate();
-    const [search,setSearch]= useState(false)
-    const [isNotSignedIn,setIsNotSignedIn]=useState(false);
-    const [userProfileProp,setUserProfileProp]=useState(null)
-    useEffect(()=>{
-    async function fetchingUser(){
-    try{
-    const isExistingUser = getUser();
+    const [search,setSearch]= useState(false);
+    const { user, loading, error,setError } = useUser();
 
-    // This is what isExistingUser looks like
-    // {"_id": "67d306073239297e7d78c6eb",
-    // "username": "bigman4",
-    // "email": "bigman4@gmail.com",
-    // "createdAt": "2025-03-13T16:21:27.020Z",
-    // "updatedAt": "2025-03-13T16:21:27.020Z",
-    // "__v": 0}
-
-
-     if ( isExistingUser.status==401 ){
-         setIsNotSignedIn(true);
-
-     }else if(isExistingUser.status==200){
-          setIsNotSignedIn(false);
-          const data = await isExistingUser.json();
-          setUserProfileProp(data);
-     }
-
-    }catch(error){
-      console.log("error is ",error);
-    }}
-    fetchingUser();
-    },[])
-
+  function handleError(error){
+    console.log("handling error innit")
+    setTimeout(()=>{
+      setError(false);
+    },2500)
+    return (
+      <>
+      <Notification message={`error is ${error}`} code="error" />
+      </>
+    )
+  }
   function handleSearchClick(){
     setSearch(true);
   }
@@ -425,14 +409,17 @@ export  const MainApp = () => {
    const dummyReturnQueryResult = () => {
     // This function doesn't need to do anything
   };
-  console.log("userProfileProp is ",userProfileProp)
 return(
 <div className="front_app" >
 <div className="main_Header_Front">
 <Logo />
 <MidMenuTopBar />
 <button id="front_search" onClick={handleSearchClick} ><img src="/search2.png" alt="Search"></img></button>
-{isNotSignedIn==true?<button id="front_signIn" onClick={handleLogin} >SIGN IN</button>: <UserProfile User={userProfileProp}/>  }
+{/* {(!user)?<button id="front_signIn" onClick={handleLogin} >SIGN IN</button>:  loading ? (<div>Loading...</div>  ) : error ? (
+                  <div>Error: {error}</div>
+                   ) : (
+                  <UserProfile User={user} />    )} */}
+{loading?(<div>Loading...</div>):user?<UserProfile User={user} />:error?handleError(error):<button id="front_signIn" onClick={handleLogin} >SIGN IN</button>}
 {search&& <SearchBar onClick={closeSearch}/>}
 <MenuFront />
 </div>
