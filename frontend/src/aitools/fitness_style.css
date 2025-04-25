@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.aitools_fitness {
+  background: linear-gradient(to right, rgb(224, 190, 126), rgb(248, 102, 5));
+  background-size: cover;
+  margin-top: 0px;
+  background-color: rgb(213, 211, 225);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(128, 0, 128, 0.2);
+  width: 100%;
+  max-width: 1000px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  display: flex;
+  margin-left: 10%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.right {
+  display: flex;
+  margin-right: 20%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 100%;
+}
+
+.center {
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.group label {
+  margin-left: 2%;
+  border: none;
+  background-color: transparent;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+}
+
+.weight label {
+  margin-left: 45px;
+}
+
+.right label {
+  margin-left: 25px;
+}
+
+.center label {
+  border: none;
+  width: auto;
+  background-color: transparent;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(9, 9, 9);
+}
+
+.group label,
+.center label {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: rgb(0, 0, 0);
+}
+
+.group input {
+  width: 150%;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 1px solid #d1c4e9;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.center textarea {
+  width: 50%;
+  margin-top: 0;
+  height: 100px;
+  overflow-y: auto;
+  margin-bottom: 0;
+  border: 1px solid #d1c4e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.aitools_fitness input:focus {
+  border-color: #8a2be2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(45, 31, 97, 0.56);
+}
+
+.aitools_fitness textarea:focus {
+  border-color: #8a2be2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(45, 31, 97, 0.56);
+}
+
+.submit {
+  width: 20%;
+}
+
+.aitools_fitness input[type="submit"] {
+  background-color: #8a2be2;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  line-height: 1.2;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.aitools_fitness input[type="submit"]:hover {
+  background-color: rgb(75, 7, 148);
+}
+
+
+.training select {
+  width: 150%;
+  margin-right: 55px;
+  height: 50px;
+  border: 1px solid #d1c4e9;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  background-color: white;
+  color: #000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.training:focus {
+  border-color: #8a2be2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(45, 31, 97, 0.56);
+}
+.activity select {
+  width: 150%;
+  margin-right: 47px;
+  height: 50px;
+  border: 1px solid #d1c4e9;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  background-color: white;
+  color: #000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.activity:focus {
+  border-color: #8a2be2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(45, 31, 97, 0.56);
+}
+
+
+
