@@ -26,7 +26,8 @@ export function FitnessPlan2() {
     }
 
     const weeklyPlan = data.content.content.weekly_plan;
-    const htmlDoc = document.implementation.createHTMLDocument("Weekly Plan Table");
+    const htmlDoc =
+      document.implementation.createHTMLDocument("Weekly Plan Table");
     const body = htmlDoc.body;
 
     const table = htmlDoc.createElement("table");
@@ -60,7 +61,15 @@ export function FitnessPlan2() {
     document.body.innerHTML = body.innerHTML;
   }
 
-  async function handleSubmit(weight, age, height, activity, reason, preference, message) {
+  async function handleSubmit(
+    weight,
+    age,
+    height,
+    activity,
+    reason,
+    preference,
+    message
+  ) {
     try {
       const fitnessPlanParams = {
         weight,
@@ -104,7 +113,15 @@ export function FitnessPlan2() {
     const height = form.get("height");
     const reason = form.get("reason");
     const message = form.get("message");
-    handleSubmit(weight, age, height, activityLevel, reason, trainingPreference, message);
+    handleSubmit(
+      weight,
+      age,
+      height,
+      activityLevel,
+      reason,
+      trainingPreference,
+      message
+    );
   }
 
   if (response) {
@@ -137,16 +154,7 @@ export function FitnessPlan2() {
                   placeholder="Enter height in meters"
                 />
               </div>
-              <div>
-                <label>Age</label>
-                <input
-                  type="number"
-                  id="age"
-                  name="age"
-                  min="0"
-                  placeholder="Enter your age"
-                />
-              </div>
+              
             </div>
 
             <div className="right">
@@ -190,61 +198,76 @@ export function FitnessPlan2() {
                   />
                 )}
               </div>
-
-              <div>
-                <label>Motivation</label>
+              <div className="age">
+                <label>Age</label>
                 <input
-                  type="text"
-                  id="reason"
-                  name="reason"
-                  placeholder="What is your reason to be fit"
+                  type="number"
+                  id="age"
+                  name="age"
+                  min="0"
+                  placeholder="Enter your age"
                 />
-              </div>
-
-              <div className="training">
-                <label>Training Style</label>
-                {trainingInputMode === "select" ? (
-                  <select
-                    className="training-style"
-                    name="preference"
-                    value={trainingPreference}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      if (val === "Other") {
-                        setTrainingInputMode("text");
-                        setTrainingPreference("");
-                      } else {
-                        setTrainingPreference(val);
-                      }
-                    }}
-                  >
-                    <option value="">Select</option>
-                    <option value="Strength Training">Strength Training</option>
-                    <option value="Cardio">Cardio</option>
-                    <option value="Yoga">Yoga</option>
-                    <option value="HIIT">HIIT</option>
-                    <option value="Other">Other</option>
-                  </select>
-                ) : (
-                  <input
-                    className="training-style"
-                    type="text"
-                    name="preference"
-                    placeholder="Enter custom style"
-                    value={trainingPreference}
-                    onChange={(e) => setTrainingPreference(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Backspace" && trainingPreference.length === 0) {
-                        setTrainingInputMode("select");
-                      }
-                    }}
-                  />
-                )}
               </div>
             </div>
           </div>
 
           <div className="center">
+            <div className="training">
+              <label>Training Style</label>
+              {trainingInputMode === "select" ? (
+                <select
+                  className="training-style"
+                  name="preference"
+                  value={trainingPreference}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === "Other") {
+                      setTrainingInputMode("text");
+                      setTrainingPreference("");
+                    } else {
+                      setTrainingPreference(val);
+                    }
+                  }}
+                >
+                  <option value="">Select</option>
+                  <option value="Strength Training">Strength Training</option>
+                  <option value="Cardio">Cardio</option>
+                  <option value="Yoga">Yoga</option>
+                  <option value="HIIT">HIIT</option>
+                  <option value="Other">Other</option>
+                </select>
+              ) : (
+                <input
+                  className="training-style"
+                  type="text"
+                  name="preference"
+                  placeholder="Enter custom style"
+                  value={trainingPreference}
+                  onChange={(e) => setTrainingPreference(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (
+                      e.key === "Backspace" &&
+                      trainingPreference.length === 0
+                    ) {
+                      setTrainingInputMode("select");
+                    }
+                  }}
+                />
+              )}
+            </div>
+          </div>
+          <div className="group2">
+          <div className="left2">
+            <div>
+              <label>Motivation</label>
+              <textarea
+              id="Motivation"
+              name="message"
+              placeholder="What is your reason to be fit..."
+            />
+            </div>
+            </div>
+          <div className="right2">
             <label>Custom Message</label>
             <textarea
               id="customMessage"
@@ -252,7 +275,8 @@ export function FitnessPlan2() {
               placeholder="Leave a note for us..."
             />
           </div>
-
+          
+          </div>
           <div className="submit">
             <input type="submit" value="Submit" />
           </div>

@@ -38,6 +38,23 @@ body {
   flex-direction: column;
   width: 100%;
 }
+.left2 {
+  display: flex;
+  margin-left: 10%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.right2 {
+  display: flex;
+  margin-right: 20%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 100%;
+}
 
 .center {
   margin-top: 3%;
@@ -48,7 +65,9 @@ body {
   width: 100%;
 }
 
-.group label {
+.group label,
+.right2 label,
+.left2 label {
   margin-left: 2%;
   border: none;
   background-color: transparent;
@@ -65,11 +84,13 @@ body {
 .right label {
   margin-left: 25px;
 }
+.age label{
+ margin-left: -6px;
+}
 
 .center label {
   border: none;
-  width: auto;
-  background-color: transparent;
+  margin: auto;
   white-space: nowrap;
   font-size: 15px;
   font-weight: 500;
@@ -77,7 +98,9 @@ body {
 }
 
 .group label,
-.center label {
+.center label,
+.left2 label,
+.right2 label {
   background-color: transparent !important;
   box-shadow: none !important;
   color: rgb(0, 0, 0);
@@ -125,7 +148,7 @@ body {
   background-color: #8a2be2;
   border: none;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
   padding: 0.75rem 1.5rem;
   text-align: center;
   line-height: 1.2;
@@ -143,8 +166,8 @@ body {
 
 
 .training select {
-  width: 150%;
-  margin-right: 55px;
+  width: 220%;
+  margin-left: -50%;
   height: 50px;
   border: 1px solid #d1c4e9;
   border-radius: 0.5rem;
@@ -154,6 +177,12 @@ body {
   background-color: white;
   color: #000;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.training input{
+  border-radius: 10px;
+  border: 1px solid #d1c4e9;
+  box-sizing: border-box;
+  margin-left: 2%;
 }
 
 .training:focus {
@@ -181,5 +210,30 @@ body {
   box-shadow: 0 0 0 2px rgba(45, 31, 97, 0.56);
 }
 
+.left2 textarea{
+  width: 170%;
+  height: 98px;
+  margin-top: -5px;
+  margin-bottom: -8px;
+  border: 1px solid #d1c4e9;
+  border-radius: 0.5rem;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+.right2 label{
+  margin-right: 40%;
+  
+}
+.left2 label{
+  margin-top: 20%;
+  margin-left: 10%;
+}
 
-
+.right2 textarea{
+  width: 100%;
+  height: 100px;
+  margin-right: -33%;
+  border: 1px solid #d1c4e9;
+  font-size: 15px;
+  border-radius: 8px;
+}
