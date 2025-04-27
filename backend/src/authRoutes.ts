@@ -118,9 +118,10 @@ router.post('/login', async (req: Request, res: Response) => {
     });
 
     res.json({
-      _id: user._id,
       username: user.username,
       email: user.email,
+      subscriptoon: user.subscription,
+      tokens: user.tokens,
     });
   } catch (error: any) {
     res.status(500).json({ message: 'Server error', error: error.message });

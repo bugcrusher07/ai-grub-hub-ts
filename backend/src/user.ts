@@ -16,7 +16,7 @@ const UserSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     subscription: { type: String, default: 'free' }, // Add this with default value
-    tokens: { type: Number, default: 0 }, // Add this with default value
+    tokens: { type: Number, default: 200 }, // Add this with default value
   },
   {
     timestamps: true,
