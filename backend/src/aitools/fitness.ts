@@ -12,6 +12,7 @@ export interface FitnessPlanParams {
 }
 
 export async function generateFitnessPlan(params: FitnessPlanParams): Promise<ResponseObject> {
+  console.log("fitnss is executed");
   const prompt = `Generate a personalized fitness plan in JSON format based on the following user details:
 Weight: ${params.weight}
 Age: ${params.age}

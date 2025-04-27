@@ -5,10 +5,10 @@ import mongoose from 'mongoose';
 import { authMiddleware } from './auth';
 // import { JWT_SECRET } from '.';
 
-interface UserRegisterParams{
-  username:string,
-  email:string,
-  password:string,
+interface UserRegisterParams {
+  username: string;
+  email: string;
+  password: string;
 }
 
 interface UserSignInWithUsername {
@@ -24,18 +24,18 @@ interface UserSignInWithEmail {
 }
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key" ;
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 // Register a new user
 router.post('/register', async (req: Request, res: Response) => {
-      console.log("Register test is working");
-      if (mongoose.connection.readyState !== 1) {
-      return res.status(500).json({
-        message: 'Database connection is not ready. Try again later.'
-      });
-    }
+  console.log('Register test is working');
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(500).json({
+      message: 'Database connection is not ready. Try again later.',
+    });
+  }
   try {
-    const { username, email, password }:UserRegisterParams = req.body;
+    const { username, email, password }: UserRegisterParams = req.body;
 
     // Check if user already exists
     const userExists = await User.findOne({ email });
@@ -47,13 +47,13 @@ router.post('/register', async (req: Request, res: Response) => {
     const user = await User.create({
       username,
       email,
-      password
+      password,
     });
 
     if (user) {
       // Generate JWT
       const token = jwt.sign({ id: user._id }, JWT_SECRET, {
-        expiresIn: '30d'
+        expiresIn: '30d',
       });
 
       // Set HTTP-only cookie
@@ -62,33 +62,37 @@ router.post('/register', async (req: Request, res: Response) => {
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         secure: process.env.NODE_ENV === 'production', // Use secure in production,
         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-        domain: 'localhost'
+        domain: 'localhost',
       });
 
       res.status(201).json({
         _id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
       });
     }
-  } catch (error:any) {
+  } catch (error: any) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
 // Login user
 router.post('/login', async (req: Request, res: Response) => {
-  console.log("login was attempted")
+  console.log('login was attempted');
   try {
-    const { username,email, password }:UserSignInWithEmail | UserSignInWithUsername = req.body;
-    console.log(`username ${username}, email ${email} password ${password}`)
+    const {
+      username,
+      email,
+      password,
+    }: UserSignInWithEmail | UserSignInWithUsername = req.body;
+    console.log(`username ${username}, email ${email} password ${password}`);
 
     // Find user by email
-    let user= null;
-    if(email){
-    user = await User.findOne({ email });}
-    else if(username){
-    user = await User.findOne({username});
+    let user = null;
+    if (email) {
+      user = await User.findOne({ email });
+    } else if (username) {
+      user = await User.findOne({ username });
     }
 
     if (!user) {
@@ -103,22 +107,22 @@ router.post('/login', async (req: Request, res: Response) => {
 
     // Generate JWT
     const token = jwt.sign({ id: user._id }, JWT_SECRET, {
-      expiresIn: '30d'
+      expiresIn: '30d',
     });
 
     // Set HTTP-only cookie
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-      secure: process.env.NODE_ENV === 'production' // Use secure in production
+      secure: process.env.NODE_ENV === 'production', // Use secure in production
     });
 
     res.json({
       _id: user._id,
       username: user.username,
-      email: user.email
+      email: user.email,
     });
-  } catch (error:any) {
+  } catch (error: any) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
@@ -127,21 +131,21 @@ router.post('/login', async (req: Request, res: Response) => {
 router.post('/logout', (req: Request, res: Response) => {
   res.cookie('token', '', {
     httpOnly: true,
-    expires: new Date(0)
+    expires: new Date(0),
   });
   res.status(200).json({ message: 'Logged out successfully' });
 });
 
 // Get current user (protected route)
-router.get('/me',authMiddleware, async (req: Request, res: Response) => {
-  console.log("me route executed")
+router.get('/me', authMiddleware, async (req: Request, res: Response) => {
+  console.log('me route executed');
   try {
     const user = await User.findById(req.user?.id).select('-password');
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
     res.status(200).json(user);
-  } catch (error:any) {
+  } catch (error: any) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });

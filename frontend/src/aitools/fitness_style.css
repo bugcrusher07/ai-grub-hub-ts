@@ -13,7 +13,7 @@ body {
   box-shadow: 0 4px 12px rgba(128, 0, 128, 0.2);
   width: 100%;
   max-width: 1000px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .group {
@@ -84,8 +84,8 @@ body {
 .right label {
   margin-left: 25px;
 }
-.age label{
- margin-left: -6px;
+.age label {
+  margin-left: -6px;
 }
 
 .center label {
@@ -144,7 +144,7 @@ body {
   width: 20%;
 }
 
-.aitools_fitness input[type="submit"] {
+.aitools_fitness input[type='submit'] {
   background-color: #8a2be2;
   border: none;
   border-radius: 10px;
@@ -160,10 +160,9 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.aitools_fitness input[type="submit"]:hover {
+.aitools_fitness input[type='submit']:hover {
   background-color: rgb(75, 7, 148);
 }
-
 
 .training select {
   width: 220%;
@@ -176,9 +175,9 @@ body {
   padding: 0.5rem;
   background-color: white;
   color: #000;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.training input{
+.training input {
   border-radius: 10px;
   border: 1px solid #d1c4e9;
   box-sizing: border-box;
@@ -201,7 +200,7 @@ body {
   padding: 0.5rem;
   background-color: white;
   color: #000;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .activity:focus {
@@ -210,7 +209,7 @@ body {
   box-shadow: 0 0 0 2px rgba(45, 31, 97, 0.56);
 }
 
-.left2 textarea{
+.left2 textarea {
   width: 170%;
   height: 98px;
   margin-top: -5px;
@@ -220,16 +219,15 @@ body {
   font-size: 15px;
   box-sizing: border-box;
 }
-.right2 label{
+.right2 label {
   margin-right: 40%;
-  
 }
-.left2 label{
+.left2 label {
   margin-top: 20%;
   margin-left: 10%;
 }
 
-.right2 textarea{
+.right2 textarea {
   width: 100%;
   height: 100px;
   margin-right: -33%;
