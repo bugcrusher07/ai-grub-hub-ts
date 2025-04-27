@@ -260,12 +260,11 @@ export function FitnessPlan2() {
           <div className="left2">
             <div>
               <label>Motivation</label>
-              <input
-                type="text"
-                id="reason"
-                name="reason"
-                placeholder="What is your reason to be fit"
-              />
+              <textarea
+              id="Motivation"
+              name="message"
+              placeholder="What is your reason to be fit..."
+            />
             </div>
             </div>
           <div className="right2">
