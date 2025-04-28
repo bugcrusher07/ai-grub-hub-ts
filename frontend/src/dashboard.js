@@ -1,6 +1,7 @@
 import './dashboard.css';
 import { useUser } from './userService';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // const TopPanel = ()=>{
 //   return (
 //     <>
@@ -34,44 +35,28 @@ const Avatar = () => {
   return <></>;
 };
 
-const Credits = (User) => {
-  const [user, setUser] = useState(null);
-  const [plan, setPlan] = useState(null);
-  const [tokenUsage, setTokenUsage] = useState(null);
-  if (User) {
-    setUser(User);
-    setPlan(user.subscription);
-    setTokenUsage(user.tokens);
-  }
-  if (user) {
-    return (
-      <>
-        <div>
-          <h3>Tokens :</h3>
-          <p>{tokenUsage}</p>
-        </div>
-        <div>
-          <h3>Plan :</h3>
-          <p>{plan}</p>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <h1>No user innit</h1>
-      </>
-    );
-  }
+const Credits = ({ User }) => {
+  return (
+    <>
+      <div>
+        <h3>Tokens : {User.tokens}</h3>
+      </div>
+      <div>
+        <h3>Plan : {User.subscription}</h3>
+      </div>
+    </>
+  );
 };
 
 const TopRightDash = () => {
+  const navigate = useNavigate();
   const { user, loading, error } = useUser();
-
+  let plan;
+  user?.subscription ? (plan = user.subscription) : (plan = null);
   return (
-    <>
-      <div className="dash_comp">
-        <div className="dash_comp_left">
+    <div className="dash_comp">
+      <div className="dash_comp_left">
+        <div>
           <div style={{ paddingTop: '50px' }}>
             <Avatar />
             {user?.username || 'Loading Username'}
@@ -81,12 +66,20 @@ const TopRightDash = () => {
             <a>edit email</a>
           </div>
         </div>
-        <div className="dash_comp_right">
-          <Credits />
-          <h4>hello</h4>
-        </div>
       </div>
-    </>
+      <div className="dash_comp_right">
+        <div>{user && <Credits User={user} />}</div>
+        <button
+          onClick={() => {
+            navigate('/buy');
+          }}
+        >
+          Buy More
+        </button>
+        {plan === 'free' && <button>Go Pro </button>}
+        {plan ? plan !== 'free' : <button>Upgrade</button>}
+      </div>
+    </div>
   );
 };
 
