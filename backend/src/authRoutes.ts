@@ -151,4 +151,12 @@ router.get('/me', authMiddleware, async (req: Request, res: Response) => {
   }
 });
 
+router.post(
+  '/buyTokens',
+  authMiddleware,
+  async (req: Request, res: Response) => {
+    console.log('we buying tokens');
+    req.user;
+  }
+);
 export default router;
