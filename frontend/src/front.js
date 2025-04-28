@@ -450,6 +450,7 @@ export async function getUser() {
 }
 export const MainApp = () => {
   const navigate = useNavigate();
+  const [showSignInPrompt,setShowSignInPrompt] = useState(true);
   const [search, setSearch] = useState(false);
   const { user, loading, error, setError } = useUser();
   function handleError(error) {
@@ -478,7 +479,7 @@ export const MainApp = () => {
   };
   return (
     <div className="front_app">
-      {(loading===false) && (error) || (!user) &&<SignInPrompt/>}
+      {(showSignInPrompt)&&(loading===false) && ((error) || (!user)) &&<SignInPrompt onClose={()=>{setShowSignInPrompt(false)}}/>}
       <div className="main_Header_Front">
         <Logo />
         <MidMenuTopBar />

@@ -55,6 +55,7 @@ const TopRightDash = () => {
   user?.subscription ? (plan = user.subscription) : (plan = null);
   return (
     <div className="dash_comp">
+
       <div className="dash_comp_left">
         <div>
           <div style={{ paddingTop: '50px' }}>

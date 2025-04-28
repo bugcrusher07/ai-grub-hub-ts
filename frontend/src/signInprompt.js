@@ -1,3 +1,6 @@
-export const SignInPrompt = ()=>{
-  return(<><h1>sign in</h1></>)
+export const SignInPrompt = ({onClose})=>{
+  return(<div>
+    Sign In
+    <button onClick={onClose}>Close</button>
+  </div>)
 };
