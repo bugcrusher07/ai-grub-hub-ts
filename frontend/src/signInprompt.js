@@ -1,3 +1,3 @@
 export const SignInPrompt = ()=>{
-  return(<><h1>lala sign kar le </h1></>)
+  return(<><h1>sign in</h1></>)
 };

@@ -1,3 +1,3 @@
 export const PaymentPage = ()=>{
-  return(<><h1>lala payment dede/Chora payment dede</h1></>)
+  return(<><h1>Payment </h1></>)
 }
