@@ -3,12 +3,18 @@ import jwt from 'jsonwebtoken';
 import User from './user';
 import mongoose from 'mongoose';
 import { authMiddleware } from './auth';
+import { GuestUser } from './user';
 // import { JWT_SECRET } from '.';
+// const {v4:uuidv4} = require("uuid");
+import { v4 } from 'uuid';
 
 interface UserRegisterParams {
   username: string;
   email: string;
   password: string;
+}
+interface GuestRegisterParams{
+  uuid:string,
 }
 
 interface UserSignInWithUsername {
@@ -26,6 +32,42 @@ interface UserSignInWithEmail {
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
+router.post('registerGuest',async (req:Request,res:Response)=>{
+  console.log("registering a guest user");
+   if (mongoose.connection.readyState !== 1) {
+    return res.status(500).json({
+      message: 'Database connection is not ready. Try again later.',
+    });
+  }
+  try{
+  const guestID = v4();
+
+  const guestUser = await GuestUser.create({
+    guestID,
+  })
+  if(guestUser){
+    const token = jwt.sign({id:guestUser._id},JWT_SECRET,{
+      expiresIn:'365d',
+    })
+     res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: 365 * 24 * 60 * 60 * 1000, // 30 days
+        secure: process.env.NODE_ENV === 'production', // Use secure in production,
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        domain: 'localhost',
+      });
+
+      res.status(201).json({
+        _id: guestUser._id,
+        tokens:guestUser.tokens,
+      });
+    }
+  } catch (error: any) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+
+
+})
 // Register a new user
 router.post('/register', async (req: Request, res: Response) => {
   console.log('Register test is working');
@@ -42,14 +84,12 @@ router.post('/register', async (req: Request, res: Response) => {
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
-
     // Create new user
     const user = await User.create({
       username,
       email,
       password,
     });
-
     if (user) {
       // Generate JWT
       const token = jwt.sign({ id: user._id }, JWT_SECRET, {

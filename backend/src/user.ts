@@ -1,5 +1,10 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
+export interface IGuest extends Document{
+  uuid:string,
+  tokens:number,
+  lastActive?:Date,
+}
 
 export interface IUser extends Document {
   username: string;
@@ -22,7 +27,15 @@ const UserSchema = new Schema<IUser>(
     timestamps: true,
   }
 );
+const GuestSchema = new Schema<IGuest>(
+  {
+    uuid: { type: String, required: true, unique: true },
+    tokens: { type: Number, default: 200 },
+    lastActive: { type: Date, default: Date.now }
+  },
+  { timestamps: true } // This adds createdAt and updatedAt automatically
 
+)
 // Hash password before saving
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
@@ -46,3 +59,4 @@ UserSchema.methods.comparePassword = async function (
 };
 
 export default mongoose.model<IUser>('User', UserSchema);
+export const GuestUser = mongoose.model<IGuest>("GuestUser",GuestSchema);
