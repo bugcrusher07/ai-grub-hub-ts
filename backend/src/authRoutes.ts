@@ -150,13 +150,11 @@ router.get('/me', authMiddleware, async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
-
-router.post(
-  '/buyTokens',
-  authMiddleware,
-  async (req: Request, res: Response) => {
+//
+router.post('/buyTokensUser',authMiddleware,async (req: Request, res: Response) => {
     console.log('we buying tokens');
     req.user;
   }
 );
+router.post('/buyTokensAnon',authMiddleware)
 export default router;
