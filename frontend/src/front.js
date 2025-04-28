@@ -3,10 +3,10 @@ import { useState, useLayoutEffect, useCallback } from 'react';
 import AuthApp from './auth';
 import { useUser } from './userService';
 import { Notification } from './notification';
-
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { backgroundBlurriness, temp } from 'three/webgpu';
+import { SignInPrompt } from './signInprompt';
 
 export const UserProfile = ({ User }) => {
   const [username, setUsername] = useState(null);
@@ -452,7 +452,6 @@ export const MainApp = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState(false);
   const { user, loading, error, setError } = useUser();
-
   function handleError(error) {
     console.log('handling error innit');
     setTimeout(() => {
@@ -479,6 +478,7 @@ export const MainApp = () => {
   };
   return (
     <div className="front_app">
+      {(loading===false) && (error) || (!user) &&<SignInPrompt/>}
       <div className="main_Header_Front">
         <Logo />
         <MidMenuTopBar />

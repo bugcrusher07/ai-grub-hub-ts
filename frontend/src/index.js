@@ -13,6 +13,7 @@ import { AiToolsMovieRecommendation } from './aitools/movieRec';
 import { AiToolsCodeSolver } from './aitools/code';
 import { AiToolsDietPlan } from './aitools/diet';
 import { UserDashboard } from './dashboard';
+import { PaymentPage } from './payment';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const App2 = () => {
         <Route path="/code" element={<AiTools toolName="code" />}/>
         <Route path="/diet" element={<AiTools toolName="diet" />}/>
         <Route path="/dashboard" element={<UserDashboard/>}/>
+        <Route path="/payment" element={<PaymentPage/>} />
       </Routes>
     </Router>
   );
