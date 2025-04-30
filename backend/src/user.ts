@@ -4,6 +4,7 @@ export interface IGuest extends Document{
   uuid:string,
   tokens:number,
   lastActive?:Date,
+  isAnonymous:boolean,
 }
 
 export interface IUser extends Document {
@@ -31,7 +32,8 @@ const GuestSchema = new Schema<IGuest>(
   {
     uuid: { type: String, required: true, unique: true },
     tokens: { type: Number, default: 200 },
-    lastActive: { type: Date, default: Date.now }
+    lastActive: { type: Date, default: Date.now },
+    isAnonymous:{type:Boolean,default:true},
   },
   { timestamps: true } // This adds createdAt and updatedAt automatically
 

@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 interface JwtPayload {
   id: string;
+  isAnonymous?:boolean;
 }
 
 // Add user property to Request interface

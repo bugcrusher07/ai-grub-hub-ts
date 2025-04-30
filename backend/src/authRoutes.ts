@@ -15,6 +15,7 @@ interface UserRegisterParams {
 }
 interface GuestRegisterParams{
   uuid:string,
+  isAnonymous:boolean;
 }
 
 interface UserSignInWithUsername {
@@ -46,7 +47,7 @@ router.post('registerGuest',async (req:Request,res:Response)=>{
     guestID,
   })
   if(guestUser){
-    const token = jwt.sign({id:guestUser._id},JWT_SECRET,{
+    const token = jwt.sign({id:guestUser._id,isAnonymous:true},JWT_SECRET,{
       expiresIn:'365d',
     })
      res.cookie('token', token, {
@@ -60,6 +61,7 @@ router.post('registerGuest',async (req:Request,res:Response)=>{
       res.status(201).json({
         _id: guestUser._id,
         tokens:guestUser.tokens,
+        isAnyonymouse:true
       });
     }
   } catch (error: any) {
@@ -181,8 +183,14 @@ router.post('/logout', (req: Request, res: Response) => {
 router.get('/me', authMiddleware, async (req: Request, res: Response) => {
   console.log('me route executed');
   try {
+    if(req.user?.isAnonymous){
+      const guestUser = await GuestUser.findById(req.user?.id).select('-lastActive')
+      if(guestUser){
+        return res.status(200).json(guestUser);
+      }
+    }
     const user = await User.findById(req.user?.id).select('-password');
-    if (!user) {
+    if(!user) {
       return res.status(404).json({ message: 'User not found' });
     }
     res.status(200).json(user);
