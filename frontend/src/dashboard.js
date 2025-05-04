@@ -1,7 +1,7 @@
-import './dashboard.css';
-import { useUser } from './userService';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import "./dashboard.css";
+import { useUser } from "./userService";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SubcriptionComponent = () => <></>;
 const HistoryComponent = () => <></>;
@@ -35,24 +35,39 @@ const TopRightDash = () => {
       <div className="dash_comp_left">
         <div className="dash_left_center">
           <Avatar />
-          <h2>{user?.username || 'Loading Username'}</h2>
+          <h2>{user?.username || "Loading Username"}</h2>
         </div>
-
         <div className="dash_left_bottom_left">
-          <h3>{user?.email || 'Loading Email'}</h3>
+          <h3>{user?.email || "Loading Email"}</h3>
           <a href="#">Edit Email</a>
-        </div>
-
-        <div className="dash_left_bottom_center">
           <button className="edit-profile-button">Edit Profile</button>
         </div>
       </div>
 
       <div className="dash_comp_right">
-        <div>{user && <Credits User={user} />}</div>
-        <button onClick={() => navigate('/buy')}>Buy More</button>
-        {plan === 'free' && <button>Go Pro</button>}
-        {plan && plan !== 'free' || !plan ? <button>Upgrade</button> : null}
+        <div className="subscriptiondetail">
+          <h3 className="subscriptionname">
+           {user?.subscription || "N/A"}
+          </h3>
+          <h3 className="subscriptiondate">
+            Valid till {user?.subscriptionEndDate || "{Date}"}
+          </h3>
+          <h3 className="tokens">Tokens: {user?.tokens ?? "N/A"}</h3>
+        </div>
+        {/* <div className="rightbutton"> */}
+          <div className="subcriptionbuttons">
+            {(plan && plan !== "free") || !plan ? (
+              <button>Upgrade</button>
+            ) : null}
+            <button onClick={() => navigate("/renew")}>
+              Renew Subscription
+            </button>
+          </div>
+          <div className="buymore">
+            <button onClick={() => navigate("/buy")}>Buy More</button>
+            {plan === "free" && <button>Go Pro</button>}
+          {/* </div> */}
+        </div>
       </div>
     </div>
   );
@@ -65,12 +80,24 @@ const LeftPanel = () => {
       <div className="dashboard_wrapper">
         <div className="dashboard_heading"> Dashboard</div>
         <div className="dashboard_container">
-          <div><button>Profile & Settings</button></div>
-          <div><button>Subscriptions & Billing</button></div>
-          <div><button>Recently Used Tools</button></div>
-          <div><button>AI_CHATBOT</button></div>
-          <div><button>Bookmarked Outputs</button></div>
-          <div><button>Analytics</button></div>
+          <div>
+            <button>Profile & Settings</button>
+          </div>
+          <div>
+            <button>Subscriptions & Billing</button>
+          </div>
+          <div>
+            <button>Recently Used Tools</button>
+          </div>
+          <div>
+            <button>AI_CHATBOT</button>
+          </div>
+          <div>
+            <button>Bookmarked Outputs</button>
+          </div>
+          <div>
+            <button>Analytics</button>
+          </div>
         </div>
         <div className="contact_dashboard">
           <a>Contact Support</a>
@@ -88,19 +115,28 @@ const RightPanel = (e) => {
 
   const renderComponent = () => {
     switch (chosenOption) {
-      case 'profile': return <ProfileComponent />;
-      case 'subscription': return <SubcriptionComponent />;
-      case 'history': return <HistoryComponent />;
-      case 'chatbot': return <ChatbotComponent />;
-      case 'bookmarked': return <BookmarkedComponent />;
-      case 'analytics': return <AnalyticsComponent />;
-      default: return <ProfileComponent />;
+      case "profile":
+        return <ProfileComponent />;
+      case "subscription":
+        return <SubcriptionComponent />;
+      case "history":
+        return <HistoryComponent />;
+      case "chatbot":
+        return <ChatbotComponent />;
+      case "bookmarked":
+        return <BookmarkedComponent />;
+      case "analytics":
+        return <AnalyticsComponent />;
+      default:
+        return <ProfileComponent />;
     }
   };
 
   return (
     <div className="right_tab_dash">
-      <div className="top_right_dash"><TopRightDash /></div>
+      <div className="top_right_dash">
+        <TopRightDash />
+      </div>
       <div className="bottom_right_dash">{renderComponent()}</div>
     </div>
   );
