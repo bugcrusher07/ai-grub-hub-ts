@@ -1,109 +1,124 @@
-import "./dashboard.css";
-import { useUser } from "./userService";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-const SubcriptionComponent = () => <></>;
-const HistoryComponent = () => <></>;
-const ChatbotComponent = () => <></>;
-const BookmarkedComponent = () => <></>;
-const AnalyticsComponent = () => <></>;
-const ProfileComponent = () => <></>;
-
+import './dashboard.css';
+import { useUser } from './userService';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// const TopPanel = ()=>{
+//   return (
+//     <>
+//       <div className="navbar_wrapper_dash" >
+//           <div></div>
+//           <div></div>
+//           <div></div>
+//       </div>
+//     </>
+//   )
+// }
+const SubcriptionComponent = () => {
+  return <></>;
+};
+const HistoryComponent = () => {
+  return <></>;
+};
+const ChatbotComponent = () => {
+  return <></>;
+};
+const BookmarkedComponent = () => {
+  return <></>;
+};
+const AnalyticsComponent = () => {
+  return <></>;
+};
+const ProfileComponent = () => {
+  return <></>;
+};
 const Avatar = () => {
-  return <div className="avatar-placeholder">[Avatar]</div>;
+  return <></>;
 };
 
-const Credits = ({ User }) => (
-  <>
-    <div>
-      <h3>Tokens : {User.tokens}</h3>
-    </div>
-    <div>
-      <h3>Plan : {User.subscription}</h3>
-    </div>
-  </>
-);
+const Credits = ({ User }) => {
+  return (
+    <>
+      <div>
+        <h3>Tokens : {User.tokens}</h3>
+      </div>
+      <div>
+        <h3>Plan : {User.subscription}</h3>
+      </div>
+    </>
+  );
+};
 
 const TopRightDash = () => {
   const navigate = useNavigate();
-  const { user } = useUser();
-  const plan = user?.subscription || null;
-
+  const { user, loading, error } = useUser();
+  let plan;
+  user?.subscription ? (plan = user.subscription) : (plan = null);
   return (
     <div className="dash_comp">
+
       <div className="dash_comp_left">
-        <div className="dash_left_center">
-          <Avatar />
-          <h2>{user?.username || "Loading Username"}</h2>
-        </div>
-        <div className="dash_left_bottom_left">
-          <h3>{user?.email || "Loading Email"}</h3>
-          <a href="#">Edit Email</a>
-          <button className="edit-profile-button">Edit Profile</button>
+        <div>
+          <div style={{ paddingTop: '50px' }}>
+            <Avatar />
+            {user?.username || 'Loading Username'}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <h3>{user?.email || 'Loading Email'}</h3>
+            <a>edit email</a>
+          </div>
         </div>
       </div>
-
       <div className="dash_comp_right">
-        <div className="subscriptiondetail">
-          <h3 className="subscriptionname">
-           {user?.subscription || "N/A"}
-          </h3>
-          <h3 className="subscriptiondate">
-            Valid till {user?.subscriptionEndDate || "{Date}"}
-          </h3>
-          <h3 className="tokens">Tokens: {user?.tokens ?? "N/A"}</h3>
-        </div>
-        {/* <div className="rightbutton"> */}
-          <div className="subcriptionbuttons">
-            {(plan && plan !== "free") || !plan ? (
-              <button>Upgrade</button>
-            ) : null}
-            <button onClick={() => navigate("/renew")}>
-              Renew Subscription
-            </button>
-          </div>
-          <div className="buymore">
-            <button onClick={() => navigate("/buy")}>Buy More</button>
-            {plan === "free" && <button>Go Pro</button>}
-          {/* </div> */}
-        </div>
+        <div>{user && <Credits User={user} />}</div>
+        <button
+          onClick={() => {
+            navigate('/buy');
+          }}
+        >
+          Buy More
+        </button>
+        {plan === 'free' && <button>Go Pro </button>}
+        {plan ? plan !== 'free' : <button>Upgrade</button>}
       </div>
     </div>
   );
 };
 
 const LeftPanel = () => {
+  const [isOptionOpen, setIsOptionOpen] = useState(false);
+  function onOptionClick(e) {}
   return (
-    <div className="left_tab_dash">
-      <h2>AI_HUB</h2>
-      <div className="dashboard_wrapper">
-        <div className="dashboard_heading"> Dashboard</div>
-        <div className="dashboard_container">
-          <div>
-            <button>Profile & Settings</button>
+    <>
+      <div className="left_tab_dash">
+        <h2 style={{ color: 'white' }}>AI_HUB</h2>
+        <div className="dashboard_wrapper">
+          <div className="dashboard_heading">Dashboard</div>
+          <div className="dashboard_container">
+            <div>
+              <button>Profile & Settings</button>
+            </div>
+            <div>
+              <button>Subscriptions & Billing</button>
+            </div>
+            <div>
+              <button>Recently Used Tools</button>
+            </div>
+            <div>
+              <button>AI_CHATBOT</button>
+            </div>
+            <div>
+              <button>Bookmarked Outputs</button>
+            </div>
+            <div>
+              <button>Analytics</button>
+            </div>
           </div>
-          <div>
-            <button>Subscriptions & Billing</button>
+          <div className="contact_dashboard">
+            <a>Contact Support</a>
           </div>
-          <div>
-            <button>Recently Used Tools</button>
-          </div>
-          <div>
-            <button>AI_CHATBOT</button>
-          </div>
-          <div>
-            <button>Bookmarked Outputs</button>
-          </div>
-          <div>
-            <button>Analytics</button>
-          </div>
-        </div>
-        <div className="contact_dashboard">
-          <a>Contact Support</a>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -115,40 +130,49 @@ const RightPanel = (e) => {
 
   const renderComponent = () => {
     switch (chosenOption) {
-      case "profile":
+      case 'profile':
         return <ProfileComponent />;
-      case "subscription":
+      case 'subscription':
         return <SubcriptionComponent />;
-      case "history":
+      case 'history':
         return <HistoryComponent />;
-      case "chatbot":
+      case 'chatbot':
         return <ChatbotComponent />;
-      case "bookmarked":
+      case 'bookmarked':
         return <BookmarkedComponent />;
-      case "analytics":
+      case 'analytics':
         return <AnalyticsComponent />;
       default:
         return <ProfileComponent />;
     }
   };
-
   return (
-    <div className="right_tab_dash">
-      <div className="top_right_dash">
-        <TopRightDash />
+    <>
+      <div className="right_tab_dash">
+        <div className="top_right_dash">
+          <TopRightDash />
+        </div>
+        <div className="bottom_right_dash">bru2{renderComponent()}</div>
       </div>
-      <div className="bottom_right_dash">{renderComponent()}</div>
-    </div>
+    </>
   );
 };
 
-const MainBody = () => (
-  <div className="dashboard_wrapper_container">
-    <div className="navbar_wrapper_dash">
-      <LeftPanel />
-      <RightPanel />
-    </div>
-  </div>
-);
+const MainBody = () => {
+  return (
+    <>
+      <div className="navbar_wrapper_dash">
+        <LeftPanel />
+        <RightPanel />
+      </div>
+    </>
+  );
+};
 
-export const UserDashboard = () => <MainBody />;
+export const UserDashboard = () => {
+  return (
+    <>
+      <MainBody />
+    </>
+  );
+};
