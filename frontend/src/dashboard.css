@@ -1,121 +1,273 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard_wrapper_container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  overflow: hidden;
+}
+
 .navbar_wrapper_dash {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr;
-  flex-direction: column;
   background-color: white;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgb(13, 13, 13), rgb(150, 139, 58));
 }
+.left_tab_dash h2{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  text-shadow: 0px 0px 10px gold;
+}
+
 .left_tab_dash {
-  background-color: rgb(0, 15, 132);
   margin: 16px;
   margin-right: 8px;
-  border: solid rgb(0, 15, 132);
   border-radius: 10px;
   border-width: 16px;
+  height: 96vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .dashboard_wrapper {
   border-radius: 10px;
-  margin-top: 40px;
-  /* height:90%; */
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 4fr 1fr;
-  background-color: skyblue;
-  /* align-items: flex-start; */
+  margin-top: 20px;
+  flex: 1;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, black,rgb(173, 170, 170));
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .dashboard_heading {
   margin-top: 20px;
-  /* margin-bottom:50px; */
-  align-self: flex-start;
+  align-self: center;
   justify-self: center;
-  font-size: 40px;
-  color: white;
+  font-size: 35px;
+  color: whitesmoke;
   font-weight: 999;
+margin-bottom: 20px;
 }
 
 .dashboard_container {
-  height: 80%;
-  background-color: skyblue;
+ 
   display: flex;
-  margin-left: 20px;
-  margin-top: 20px;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
 .dashboard_container > div {
-  color: white;
   font-size: 1.2em;
   font-weight: 555;
 }
 
-.contact_dashboard {
-  margin-top: 93px;
-  align-self: flex-end;
+.dashboard_container > div > button {
+background: linear-gradient(to left, cyan, white);
+  width: 220px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 16px;
   margin-bottom: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.contact_dashboard {
+
+  margin-top: auto;
+  margin-bottom: 20px;
+  padding: 0 20px;
 }
 
 .right_tab_dash {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1.9fr 6fr;
-  background-color: magenta;
+  background: linear-gradient(to left, black,rgb(174, 173, 173));
   margin: 16px;
   margin-left: 8px;
-  border: solid magenta;
   border-width: 16px;
   border-radius: 10px;
+  height: 96vh;
+  overflow: hidden;
 }
 
 .top_right_dash {
-  background-color: aqua;
+  background-color: transparent;
 }
 
-.dashboard_container > div > button {
-  width: 275px;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-/* .bottom_right_dash{
-
-} */
-
-/* TOP RIGHT DASHBOARD */
 .dash_comp {
   display: flex;
-  /* justify-content: space-evenly; */
-  background-color: green;
   height: 100%;
+  gap: 30px;
+  box-sizing: border-box;
 }
 
 .dash_comp_left {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  background-color: brown;
-  width: 100%;
+  align-items: center;
+  justify-content: start;
+  background: linear-gradient(to right, rgb(77, 240, 255), rgba(255, 220, 19, 0.977));
+  width: 60%;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px;
+  height: 90%;
 }
 
-.dash_comp_left > div {
-  padding-left: 50px;
+.dash_left_center {
+  display: flex;
+  margin-left: -35%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+ 
+}
+.dash_left_center h2{
+  margin-left: -40px;
+  margin-top: -5px;
+}
+
+.dash_left_bottom_left {
+  display: flex;
+margin-left: -35%;
+margin-top: 10px;
+margin-bottom: -20%;
+justify-content: flex-end;
+}
+
+.dash_left_bottom_left > a {
+  font-size: x-small;
+  align-self: flex-end;
+  margin-bottom: 2px;
+  margin-right: 40px;
+}
+
+.dash_left_bottom_center {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.edit-profile-button {
+  margin-top: -10px;
+  margin-right: -80px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.edit-profile-button:hover {
+  background-color: #0056b3;
+}
+
+.avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: gray;
+  margin-bottom: 10px;
+  margin-top: -30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dash_comp_right {
   display: flex;
-  background-color: pink;
+  flex-direction: column;
+  justify-content: flex-start; 
+  background: linear-gradient(to left, rgb(77, 240, 255), rgba(255, 220, 19, 0.977));
   width: 100%;
+  height: 90%;
+  border: 2px solid none;
+  margin: 20px;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative; 
+}
+.subscriptiondetail {
+  display: flex;
+  flex-direction: column;
+ top: 30px;
+  margin: auto;
+  margin-left: 30px;
+  gap: 25px;
+  align-items: flex-start;
+  position: relative; 
+}
+
+.subscriptiondetail h3 {
+  font-family: poppins;
+  font-size: 15px;
+}
+
+.subcriptionbuttons {
+  display: flex;
+  width: auto;
+  position: relative; 
+ bottom: 61%;
+  left: 45%; 
+}
+
+.subcriptionbuttons > button {
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  margin: 10px 20px;
+  height: 40px;
+}
+
+.buymore {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  bottom: 22%;
+
+  left: 29%; 
+}
+.buymore > button{
+  font-family: poppins;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  background-color: rgb(28, 182, 28);
+  height: 40px;
 }
 
 .dash_comp_right > button {
-  border: 5px;
-  padding: 0px 10px;
-  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  margin: 10px 20px;
   height: 40px;
 }
