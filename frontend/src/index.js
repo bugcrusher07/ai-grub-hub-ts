@@ -7,11 +7,6 @@ import { MainApp } from './front';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { AiTools } from './aitools';
-import { AiToolsEmail } from './aitools/email';
-import { AiToolsAdvice } from './aitools/advice';
-import { AiToolsMovieRecommendation } from './aitools/movieRec';
-import { AiToolsCodeSolver } from './aitools/code';
-import { AiToolsDietPlan } from './aitools/diet';
 import { UserDashboard } from './dashboard';
 import { PaymentPage } from './payment';
 

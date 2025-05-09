@@ -1,4 +1,5 @@
-import './dashboard.css';
+// import './dashboard.css';
+import './dashboard.modules.css';
 import { useUser } from './userService';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -90,28 +91,16 @@ const LeftPanel = () => {
   return (
     <>
       <div className="left_tab_dash">
-        <h2 style={{ color: 'white' }}>AI_HUB</h2>
+        <h2 className="AI_HUB_heading" style={{ color: 'white' }}>AI_HUB</h2>
         <div className="dashboard_wrapper">
-          <div className="dashboard_heading">Dashboard</div>
           <div className="dashboard_container">
-            <div>
-              <button>Profile & Settings</button>
-            </div>
-            <div>
-              <button>Subscriptions & Billing</button>
-            </div>
-            <div>
-              <button>Recently Used Tools</button>
-            </div>
-            <div>
-              <button>AI_CHATBOT</button>
-            </div>
-            <div>
-              <button>Bookmarked Outputs</button>
-            </div>
-            <div>
-              <button>Analytics</button>
-            </div>
+          <div id="dashboard_heading">Dashboard</div>
+             <div><button >Profile & Settings</button></div>
+            <div><button >Subscriptions & Billing</button></div>
+            <div><button >Recently Used Tools</button></div>
+            <div><button >AI_CHATBOT</button></div>
+            <div><button >Bookmarked Outputs</button></div>
+            <div><button >Analytics</button></div>
           </div>
           <div className="contact_dashboard">
             <a>Contact Support</a>
