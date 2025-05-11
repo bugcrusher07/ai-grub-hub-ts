@@ -32,18 +32,20 @@ const AnalyticsComponent = () => {
 const ProfileComponent = () => {
   return <></>;
 };
-const Avatar = () => {
-  return <></>;
+const Avatar = ({User}) => {
+  return <>
+  <div className="avatar_placeholder">[Avatar]</div>
+  </>;
 };
 
 const Credits = ({ User }) => {
   return (
     <>
       <div>
-        <h3>Tokens : {User.tokens}</h3>
+        <h3>Tokens : {User?.tokens || "No user tokens"}</h3>
       </div>
       <div>
-        <h3>Plan : {User.subscription}</h3>
+        <h3>Plan : {User?.subscription || "No user subscription"}</h3>
       </div>
     </>
   );
@@ -56,28 +58,19 @@ const TopRightDash = () => {
   user?.subscription ? (plan = user.subscription) : (plan = null);
   return (
     <div className="dash_comp">
-
       <div className="dash_comp_left">
-        <div>
-          <div style={{ paddingTop: '50px' }}>
-            <Avatar />
+        <div className='comp_left_top'>
+            <Avatar User={user} />
             {user?.username || 'Loading Username'}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <h3>{user?.email || 'Loading Email'}</h3>
-            <a>edit email</a>
-          </div>
+        </div>
+        <div className='comp_left_bottom'>
+            <h2>{user?.email || 'Loading Email'}</h2>
+            <a style={{color:"black"}}>edit email</a>
         </div>
       </div>
       <div className="dash_comp_right">
         <div>{user && <Credits User={user} />}</div>
-        <button
-          onClick={() => {
-            navigate('/buy');
-          }}
-        >
-          Buy More
-        </button>
+        <button onClick={() => {navigate('/buy')}} > Buy More </button>
         {plan === 'free' && <button>Go Pro </button>}
         {plan ? plan !== 'free' : <button>Upgrade</button>}
       </div>

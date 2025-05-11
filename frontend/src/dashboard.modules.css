@@ -92,6 +92,7 @@ justify-content: space-between;
   /* border-radius: 10px; */
   font-size: 2vh;
   margin-bottom:3vh;
+  cursor: pointer;
 }
 
 .contact_dashboard {
@@ -130,7 +131,7 @@ justify-content: space-between;
 .dash_comp_left {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-around;
   background-color: brown;
   width: 100%;
 }
@@ -150,4 +151,27 @@ justify-content: space-between;
   padding: 0px 10px;
   margin: 10px;
   height: 40px;
+}
+
+.avatar_placeholder{
+  width:75px;
+  height: 75px;
+  border-radius:75px;
+  background-color: grey;
+}
+
+.comp_left_top{
+  display:flex;
+  align-items: center;
+}
+.comp_left_bottom{
+  display: flex;
+  align-items: baseline;
+}
+.comp_left_bottom >*{
+  margin-right: 5px;
+}
+
+.comp_left_top >*{
+  margin-right: 50px;
 }
