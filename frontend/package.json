@@ -3,19 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.0",
     "@react-three/drei": "^9.112.0",
     "@react-three/fiber": "^8.17.7",
     "@reduxjs/toolkit": "^2.8.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.25.4",
     "frontend": "file:",
     "http-proxy-middleware": "^3.0.3",
+    "lucide-react": "^0.511.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
+    "recharts": "^2.15.3",
     "three": "^0.168.0",
     "web-vitals": "^2.1.4"
   },
@@ -43,5 +49,10 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7"
+  }
 }

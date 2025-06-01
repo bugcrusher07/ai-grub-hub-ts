@@ -19,17 +19,19 @@
   padding:0;
 } */
  .navbar_wrapper_dash{
+  background: linear-gradient(rgb(10, 10, 10),rgb(190, 178, 178));
   margin:20px;
+  padding:20px;
   display:flex;
-  border-radius:100px;
+  /* border-radius:100px; */
   height: calc(100vh - 40px);
  }
 .left_tab_dash {
   width:430px;
-  background-color: rgb(0, 15, 132);
+  background-color: rgb(211, 200, 200);
   margin: 0px;
   margin-right: 8px;
-  border: solid rgb(0, 15, 132);
+  border: solid linear-gradient(black,rgb(143, 132, 132));
   border-radius: 10px;
   border-width: 16px;
 }
@@ -52,7 +54,7 @@ display: flex;
 height:90%;
 flex-direction: column;
 /* padding:10x; */
-background-color: aqua;
+background-color: rgb(120, 122, 122);
 align-items: center;
 justify-content: space-between;
 }
@@ -174,4 +176,65 @@ justify-content: space-between;
 
 .comp_left_top >*{
   margin-right: 50px;
+}
+
+.credits_wrapper{
+  background-color: green;
+  display: flex;
+  width: 100%;
+}
+.credits_left_div{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items:flex-start;
+  background-color: yellow;
+  width:40%;
+  padding-left:8%;
+}
+.credits_right_div{
+  background-color:yellow;
+  width:60%;
+}
+
+.subscription_name_credits{
+  justify-self:flex-start;
+}
+.valid_date_credits{
+  justify-self: flex-start;
+}
+
+.credits_right_div{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  /* padding-left:8%; */
+}
+.credits_right_top > button{
+  align-self: flex-start;
+  margin-right:40px;
+}
+
+#upgrade_sub_button{
+  align-self: flex-start;
+  width:120px;
+  height:40px;
+  border:solid blue;
+  border-radius: 15px;
+}
+#renew_sub_button{
+  align-self: flex-start;
+  width:120px;
+  height:40px;
+  border:solid blue;
+  border-radius: 15px;
+
+}
+#buy_tokens_button{
+  align-self: flex-start;
+  height:40px;
+  width: 120px;
+  border: solid blue;
+  border-radius: 15px;
 }

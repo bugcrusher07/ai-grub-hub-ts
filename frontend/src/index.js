@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import AuthApp from './auth'
@@ -7,7 +7,7 @@ import { MainApp } from './front';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { AiTools } from './aitools';
-import { UserDashboard } from './dashboard';
+import { DashboardPage3 } from './dashboard';
 import { PaymentPage } from './payment';
 
 const HomePage = () => {
@@ -23,7 +23,7 @@ const HomePage = () => {
 };
 
 // Your dashboard component (the page you want to navigate to after login)
-const DashboardPage = () => {
+const DashboardPage2 = () => {
   return (
     < AuthApp />
   );
@@ -35,14 +35,14 @@ const App2 = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/auth" element={<DashboardPage />} />
+        <Route path="/auth" element={<DashboardPage2 />} />
         <Route path="/fitness" element={<AiTools toolName="fitness" />} />
         <Route path="/email" element={<AiTools toolName="email" />}/>
         <Route path="/advice" element={<AiTools toolName="advice" />}/>
         <Route path="/movie" element={<AiTools toolName="movie" />}/>
         <Route path="/code" element={<AiTools toolName="code" />}/>
         <Route path="/diet" element={<AiTools toolName="diet" />}/>
-        <Route path="/dashboard" element={<UserDashboard/>}/>
+        <Route path="/dashboard" element={<DashboardPage3/>}/>
         <Route path="/payment" element={<PaymentPage/>} />
       </Routes>
     </Router>
