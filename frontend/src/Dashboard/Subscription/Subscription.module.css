@@ -1,0 +1,177 @@
+.card {
+  background-color: white;
+  width:25vw;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  border-radius: 5px;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  background-color: rgba(173, 216, 230, 0.249);
+}
+
+.header h2 {
+  justify-self: flex-start;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.subtitle {
+  width:100%;
+  justify-self: flex-start;
+  margin: 5px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.statusBadge {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.planInfo {
+  width:100%;
+  /* background-color: aqua; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.planDetails h3 {
+  width:100%;
+  /* background-color: red; */
+  justify-content: flex-start;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.price {
+  width:100%;
+  /* background-color: green; */
+  margin-left:6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.renewalInfo {
+  text-align: right;
+}
+
+.renewalLabel {
+  display: block;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.renewalDate {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tokensSection {
+  margin-bottom: 20px;
+}
+
+.tokensHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tokensLabel {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tokensCount {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.progressBarContainer {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #000;
+  border-radius: 4px;
+}
+
+.resetInfo {
+  text-align: left;
+  justify-self: flex-start;
+  /* background-color: aqua; */
+  width: 100%;
+  margin: 15px 0px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.upgradeButton {
+  flex: 1;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.billingButton {
+  flex: 1;
+  background-color: white;
+  color: #000;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+  .card {
+    padding: 16px;
+  }
+
+  .planInfo {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .renewalInfo {
+    text-align: left;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

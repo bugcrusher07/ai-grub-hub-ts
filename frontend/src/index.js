@@ -7,13 +7,13 @@ import { MainApp } from './front';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import { AiTools } from './aitools';
-import { DashboardPage3 } from './dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import { PaymentPage } from './payment';
 
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+const handleLogin = () => {
     navigate('/auth');
   };
 
@@ -42,7 +42,7 @@ const App2 = () => {
         <Route path="/movie" element={<AiTools toolName="movie" />}/>
         <Route path="/code" element={<AiTools toolName="code" />}/>
         <Route path="/diet" element={<AiTools toolName="diet" />}/>
-        <Route path="/dashboard" element={<DashboardPage3/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/payment" element={<PaymentPage/>} />
       </Routes>
     </Router>

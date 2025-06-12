@@ -15,7 +15,7 @@
     "antd": "^5.25.4",
     "frontend": "file:",
     "http-proxy-middleware": "^3.0.3",
-    "lucide-react": "^0.511.0",
+    "lucide-react": "^0.514.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
@@ -52,7 +52,6 @@
   "proxy": "http://localhost:5000",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.7"
+    "postcss": "^8.5.3"
   }
 }
