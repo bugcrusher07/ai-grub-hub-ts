@@ -27,7 +27,8 @@
   font-weight: 600;
 }
 .subtitle {
-  margin: 5px 0 0;
+  display: block;
+  margin-top: 20px;
   color: #6b7280;
   font-size: 14px;
   text-align: left;
@@ -70,6 +71,9 @@
 }
 
 .activityTime {
+  display: block;
+  text-align: center;
+  width: 100%;
   margin: 5px 0 0;
   color: #6b7280;
   font-size: 12px;

@@ -30,7 +30,7 @@ const RecentActivity = () => {
           <Clock size={16} className={styles.titleIcon} />
           <h2>Recent Activity</h2>
         </div>
-        <h6 className={styles.subtitle}>Your latest AI tool usage</h6>
+        <p className={styles.subtitle}>Your latest AI tool usage</p>
       </div>
 
       <div className={styles.activityList}>
@@ -43,7 +43,7 @@ const RecentActivity = () => {
             </div>
             <div className={styles.activityDetails}>
               <h3>{activity.type}</h3>
-              <h6 className={styles.activityTime}>{activity.time}</h6>
+              <p className={styles.activityTime}>{activity.time}</p>
             </div>
             <div className={styles.activityStatus}>
               <span

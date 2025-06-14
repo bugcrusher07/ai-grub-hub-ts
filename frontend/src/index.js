@@ -1,7 +1,7 @@
 // import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import AuthApp from './auth'
+import AuthPage from './AuthPage/AuthPage';
 import reportWebVitals from './reportWebVitals';
 import { MainApp } from './front';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
@@ -9,6 +9,8 @@ import './App.css';
 import { AiTools } from './aitools';
 import Dashboard from './Dashboard/Dashboard';
 import { PaymentPage } from './payment';
+// import EmailResult from './EmailWriter/EmailResult/EmailResult';
+import FitnessPlanner from './FitnessPlanner/FitnessPlanner';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -23,11 +25,11 @@ const handleLogin = () => {
 };
 
 // Your dashboard component (the page you want to navigate to after login)
-const DashboardPage2 = () => {
-  return (
-    < AuthApp />
-  );
-};
+// const DashboardPage2 = () => {
+  // return (
+    // < AuthApp />
+  // );
+// };
 
 // Main App component
 const App2 = () => {
@@ -35,7 +37,7 @@ const App2 = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/auth" element={<DashboardPage2 />} />
+        <Route path="/auth" element={<AuthPage />} />
         <Route path="/fitness" element={<AiTools toolName="fitness" />} />
         <Route path="/email" element={<AiTools toolName="email" />}/>
         <Route path="/advice" element={<AiTools toolName="advice" />}/>
@@ -43,7 +45,7 @@ const App2 = () => {
         <Route path="/code" element={<AiTools toolName="code" />}/>
         <Route path="/diet" element={<AiTools toolName="diet" />}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/payment" element={<PaymentPage/>} />
+        {/* <Route path="/emailresult" element={<EmailResult/>} /> */}
       </Routes>
     </Router>
   );

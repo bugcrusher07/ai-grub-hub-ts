@@ -12,6 +12,8 @@ import { AiToolsAdvice } from './aitools/advice';
 import { AiToolsMovieRecommendation } from './aitools/movieRec';
 import { AiToolsCodeSolver } from './aitools/code';
 import { AiToolsDietPlan } from './aitools/diet';
+import FitnessPlanner from './FitnessPlanner/FitnessPlanner';
+import EmailWriter from './EmailWriter/EmailWriter';
 
 
 const AiToolsNavBar =()=>{
@@ -64,9 +66,9 @@ export const AiTools =({toolName})=>{
     const renderTool = () => {
     switch (toolName) {
       case "fitness":
-        return <FitnessPlan2 />;
+        return <FitnessPlanner/>;
       case "email":
-        return <AiToolsEmail />;
+        return <EmailWriter/>;
       case "advice":
         return <AiToolsAdvice />;
       case "movie":
@@ -82,7 +84,7 @@ export const AiTools =({toolName})=>{
   return(
     <div>
     <AiToolsNavBar/>
-    <HoverNavbar/>
+    {/* <HoverNavbar/> */}
     {/* <AiToolsFitness/> */}
     {/* <FitnessPlan/> */}
     {renderTool()}

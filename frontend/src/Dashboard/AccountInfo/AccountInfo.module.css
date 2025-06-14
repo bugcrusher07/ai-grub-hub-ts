@@ -33,11 +33,11 @@
 }
 
 .userInfo {
-  /* background-co  lor: aqua; */
+  /* background-color: aqua; */
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .avatar {
@@ -74,6 +74,7 @@
 }
 
 .infoGrid {
+  /* background-color: aqua; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
@@ -82,15 +83,18 @@
 .infoItem {
   display: flex;
   flex-direction: column;
+  /* background-color: red; */
 }
 
 .infoLabel {
+  text-align: left;
   font-size: 12px;
   color: #6b7280;
   margin-bottom: 5px;
 }
 
 .infoValue {
+  text-align: left;
   font-size: 14px;
   font-weight: 500;
 }
