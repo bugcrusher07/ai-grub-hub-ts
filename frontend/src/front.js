@@ -6,7 +6,7 @@ import { Notification } from './notification';
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { backgroundBlurriness, temp } from 'three/webgpu';
-import { SignInPrompt } from './signInprompt';
+import { SignInPrompt } from './signInPrompt';
 
 export const UserProfile = ({ User }) => {
   const [username, setUsername] = useState(null);
@@ -479,7 +479,7 @@ export const MainApp = () => {
   };
   return (
     <div className="front_app">
-      {(showSignInPrompt)&&(loading===false) && ((error) || (!user)) &&<SignInPrompt onClose={()=>{setShowSignInPrompt(false)}}/>}
+      {(showSignInPrompt)&&(loading===false) && ((error) || (!user)) &&<SignInPrompt isOpen={true} onClose={()=>{setShowSignInPrompt(false)}}/>}
       <div className="main_Header_Front">
         <Logo />
         <MidMenuTopBar />
