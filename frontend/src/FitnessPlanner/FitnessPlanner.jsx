@@ -44,95 +44,36 @@ const FitnessPlanner = () => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const generateFitnessPlan = async () => {
-    setIsGenerating(true)
+const generateFitnessPlan = async () => {
+  setIsGenerating(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 3000))
+  try {
+    const res = await fetch('http://localhost:3000/api/fitness-plan', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
 
-    // Mock generated plan
-    const mockPlan = {
-      title: "Your Personalized 7-Day Fitness Journey",
-      subtitle: "Tailored specifically for your goals and fitness level",
-      days: [
-        {
-          day: 1,
-          title: "Upper Body Strength",
-          exercises: [
-            { name: "Push-ups", sets: "3", reps: "12-15", rest: "60s" },
-            { name: "Dumbbell Rows", sets: "3", reps: "10-12", rest: "60s" },
-            { name: "Shoulder Press", sets: "3", reps: "10-12", rest: "60s" },
-            { name: "Plank", sets: "3", reps: "30-45s", rest: "30s" },
-          ],
-        },
-        {
-          day: 2,
-          title: "Cardio & Core",
-          exercises: [
-            { name: "Running/Jogging", sets: "1", reps: "20-30 min", rest: "-" },
-            { name: "Mountain Climbers", sets: "3", reps: "20", rest: "45s" },
-            { name: "Russian Twists", sets: "3", reps: "20", rest: "45s" },
-            { name: "Burpees", sets: "3", reps: "8-10", rest: "60s" },
-          ],
-        },
-        {
-          day: 3,
-          title: "Lower Body Power",
-          exercises: [
-            { name: "Squats", sets: "4", reps: "12-15", rest: "60s" },
-            { name: "Lunges", sets: "3", reps: "10 each leg", rest: "60s" },
-            { name: "Deadlifts", sets: "3", reps: "10-12", rest: "90s" },
-            { name: "Calf Raises", sets: "3", reps: "15-20", rest: "45s" },
-          ],
-        },
-        {
-          day: 4,
-          title: "Active Recovery",
-          exercises: [
-            { name: "Light Walking", sets: "1", reps: "30 min", rest: "-" },
-            { name: "Stretching", sets: "1", reps: "15 min", rest: "-" },
-            { name: "Foam Rolling", sets: "1", reps: "10 min", rest: "-" },
-            { name: "Deep Breathing", sets: "3", reps: "5 min", rest: "-" },
-          ],
-        },
-        {
-          day: 5,
-          title: "Full Body Circuit",
-          exercises: [
-            { name: "Jumping Jacks", sets: "3", reps: "30s", rest: "30s" },
-            { name: "Push-ups", sets: "3", reps: "10-12", rest: "45s" },
-            { name: "Squats", sets: "3", reps: "15", rest: "45s" },
-            { name: "High Knees", sets: "3", reps: "30s", rest: "30s" },
-          ],
-        },
-        {
-          day: 6,
-          title: "Strength & Flexibility",
-          exercises: [
-            { name: "Yoga Flow", sets: "1", reps: "20 min", rest: "-" },
-            { name: "Resistance Band Work", sets: "3", reps: "12-15", rest: "60s" },
-            { name: "Balance Poses", sets: "3", reps: "30s each", rest: "30s" },
-            { name: "Cool Down Stretch", sets: "1", reps: "10 min", rest: "-" },
-          ],
-        },
-        {
-          day: 7,
-          title: "Fun Activity Day",
-          exercises: [
-            { name: "Dance Workout", sets: "1", reps: "30 min", rest: "-" },
-            { name: "Sports Activity", sets: "1", reps: "45 min", rest: "-" },
-            { name: "Nature Walk", sets: "1", reps: "30 min", rest: "-" },
-            { name: "Meditation", sets: "1", reps: "10 min", rest: "-" },
-          ],
-        },
-      ],
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    setGeneratedPlan(mockPlan)
-    setIsGenerating(false)
-    setShowPlan(true)
-  }
+    const data = await res.json();
+    console.log('API Response:', data);
 
+    // Set the generated plan data
+    setGeneratedPlan(data.content);
+    setShowPlan(true);
+
+  } catch (error) {
+    console.error('Error generating fitness plan:', error);
+    alert('Failed to generate fitness plan. Please try again.');
+  } finally {
+    setIsGenerating(false);
+  }
+}
   if (showPlan && generatedPlan) {
     return <FitnessPlan plan={generatedPlan} onBack={() => setShowPlan(false)} />
   }

@@ -117,6 +117,9 @@
   text-align: center;
   margin-bottom: 40px;
 }
+.formHeader p{
+  width:100%;
+}
 
 .formIcon {
   color: #667eea;
@@ -147,6 +150,10 @@
   flex-direction: column;
   gap: 12px;
 }
+.inputGroup:has(input:focus) > .label {
+  background-color: transparent !important;
+}
+
 
 .label {
   display: flex;

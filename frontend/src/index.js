@@ -1,4 +1,6 @@
 // import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import AuthPage from './AuthPage/AuthPage';
@@ -9,6 +11,9 @@ import './App.css';
 import { AiTools } from './aitools';
 import Dashboard from './Dashboard/Dashboard';
 import { PaymentPage } from './payment';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { fetchUser } from './authSlice';
 // import EmailResult from './EmailWriter/EmailResult/EmailResult';
 import FitnessPlanner from './FitnessPlanner/FitnessPlanner';
 
@@ -33,6 +38,12 @@ const handleLogin = () => {
 
 // Main App component
 const App2 = () => {
+ const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   return (
     <Router>
       <Routes>
@@ -54,7 +65,9 @@ const App2 = () => {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-   < App2 />
+     <Provider store={store}>
+    <App2 />
+  </Provider>
 );
 
 

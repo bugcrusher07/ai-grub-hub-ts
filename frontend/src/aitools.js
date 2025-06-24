@@ -24,7 +24,7 @@ const AiToolsNavBar =()=>{
 
   return(
             <div  style={{
-                  display: "grid",marginBottom:"15px",
+                  display: "grid" ,
                   gridTemplateColumns: "1fr auto 1fr",
                   alignItems: "center",
                   }}>

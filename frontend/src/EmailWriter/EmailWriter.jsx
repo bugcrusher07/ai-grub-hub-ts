@@ -59,45 +59,64 @@ const EmailWriter = () => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const generateEmail = async () => {
-    setIsGenerating(true)
+  // const generateEmail = async () => {
+  //   setIsGenerating(true)
+  //     const res = await fetch('http://localhost:3000/api/email', {
+  //       method: 'POST',
+  //       headers: { // Fixed 'header' to 'headers'
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(formData)
+  //     });
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2500))
+  //   setGeneratedEmail(res)
+  //   setIsGenerating(false)
+  //   setShowResult(true)
+  // }
+const generateEmail = async () => {
+  setIsGenerating(true)
 
-    // Mock generated email
-    const mockEmail = {
-      subject: formData.subject || "Re: Your Request",
-      body: `Dear ${formData.recipient === "boss" ? "Manager" : "Colleague"},
+  try {
+    const res = await fetch('http://localhost:3000/api/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
 
-I hope this email finds you well. I am writing to ${formData.mainPurpose || "follow up on our previous discussion"}.
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
 
-${
-  formData.keyPoints
-    ? `Key points I wanted to address:
-• ${formData.keyPoints.split(",").join("\n• ")}`
-    : ""
-}
+    const data = await res.json(); // Parse the JSON response
+    console.log('API Response:', data); // Debug log
 
-${formData.context ? `For context: ${formData.context}` : ""}
-
-${formData.callToAction || "I look forward to hearing from you soon."}
-
-Best regards,
-[Your Name]`,
+    // Transform the data to match what EmailResult expects
+    const emailData = {
+      subject: data.content.subject || formData.subject,
+      body: data.content.body || data.content,
+      greeting: data.content.greeting || '',
+      closing: data.content.closing || '',
       metadata: {
         type: formData.emailType,
         tone: formData.tone,
-        wordCount: 127,
-        readingTime: "30 seconds",
-      },
-    }
+        wordCount: data.content.body ? data.content.body.split(' ').length : 0,
+        readingTime: data.content.body ? Math.ceil(data.content.body.split(' ').length / 200) + ' min' : '1 min'
+      }
+    };
 
-    setGeneratedEmail(mockEmail)
-    setIsGenerating(false)
-    setShowResult(true)
+    setGeneratedEmail(emailData);
+    setShowResult(true);
+
+  } catch (error) {
+    console.error('Error generating email:', error);
+    // Handle error - show error message to user
+    alert('Failed to generate email. Please try again.');
+  } finally {
+    setIsGenerating(false);
   }
-
+}
   if (showResult && generatedEmail) {
     return <EmailResult email={generatedEmail} onBack={() => setShowResult(false)} />
   }

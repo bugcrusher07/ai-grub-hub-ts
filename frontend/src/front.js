@@ -7,6 +7,7 @@ import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { backgroundBlurriness, temp } from 'three/webgpu';
 import { SignInPrompt } from './signInPrompt';
+import {useAuth} from './useAuth';
 
 export const UserProfile = ({ User }) => {
   const [username, setUsername] = useState(null);
@@ -213,7 +214,7 @@ const logoAddress = '/logoIMG.png';
 
 export const Logo = () => {
   return (
-    <div>
+    <div style={{padding:"0px",margin:"0px",height:"80px"}}>
       <img className="logo_front" src={logoAddress} alt="Brand" />
     </div>
   );
@@ -452,7 +453,7 @@ export const MainApp = () => {
   const navigate = useNavigate();
   const [showSignInPrompt,setShowSignInPrompt] = useState(true);
   const [search, setSearch] = useState(false);
-  const { user, loading, error, setError } = useUser();
+  const { user, loading, error, setError } = useAuth();
   function handleError(error) {
     console.log('handling error innit');
     setTimeout(() => {

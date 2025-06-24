@@ -99,6 +99,10 @@
   color: #374151;
   font-size: 0.875rem;
 }
+.inputGroup:has(input:focus) > .label {
+  background-color: transparent !important;
+}
+
 
 .required {
   color: #ef4444;

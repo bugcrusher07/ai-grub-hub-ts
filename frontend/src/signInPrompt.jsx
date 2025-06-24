@@ -102,14 +102,16 @@ export const SignInPrompt = ({ isOpen, onClose, onSignIn }) => {
             </div>
 
             <p className={styles.disclaimer}>
-              By signing in, you agree to our{" "}
-              <a href="#" className={styles.link}>
+              By signing in, you agree to our{" "}<br />
+              <div>
+                <a href="#" className={styles.link}>
                 Terms of Service
               </a>{" "}
               and{" "}
               <a href="#" className={styles.link}>
                 Privacy Policy
               </a>
+              </div>
             </p>
           </div>
         </div>

@@ -394,6 +394,10 @@
 }
 
 .disclaimer {
+  width:100%;
+  flex-direction: column;
+  margin: 0px;
+  text-align: center;
   font-size: 0.75rem;
   color: #718096;
   line-height: 1.4;
