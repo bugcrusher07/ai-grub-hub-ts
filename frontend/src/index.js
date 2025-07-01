@@ -14,10 +14,11 @@ import { PaymentPage } from './payment';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { fetchUser } from './authSlice';
+import HomePage from './bigBoi/src2/pages/HomePage';
 // import EmailResult from './EmailWriter/EmailResult/EmailResult';
 import FitnessPlanner from './FitnessPlanner/FitnessPlanner';
 
-const HomePage = () => {
+const HomePage2 = () => {
   const navigate = useNavigate();
 
 const handleLogin = () => {

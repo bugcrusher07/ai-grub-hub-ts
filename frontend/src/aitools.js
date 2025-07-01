@@ -14,6 +14,8 @@ import { AiToolsCodeSolver } from './aitools/code';
 import { AiToolsDietPlan } from './aitools/diet';
 import FitnessPlanner from './FitnessPlanner/FitnessPlanner';
 import EmailWriter from './EmailWriter/EmailWriter';
+import AITherapist from './AITherapist/AITherapist';
+import CodeAdvice from './CodeAdvice/CodeAdvice';
 
 
 const AiToolsNavBar =()=>{
@@ -70,11 +72,11 @@ export const AiTools =({toolName})=>{
       case "email":
         return <EmailWriter/>;
       case "advice":
-        return <AiToolsAdvice />;
+        return <AITherapist/>;
       case "movie":
         return <AiToolsMovieRecommendation />;
       case "code":
-        return <AiToolsCodeSolver/>
+        return <CodeAdvice/>
       case "diet":
         return <AiToolsDietPlan/>
       default:
