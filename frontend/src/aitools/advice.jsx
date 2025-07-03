@@ -1,5 +1,5 @@
 import React from 'react';
-import '../aitools.modules.css';
+import '../aitools.module.css';
 import { useState } from 'react';
 
 export const AiToolsAdvice = () => {

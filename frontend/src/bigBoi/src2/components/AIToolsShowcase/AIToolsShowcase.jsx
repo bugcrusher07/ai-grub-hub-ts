@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Dumbbell, Mail, Code, Apple, Film, Heart, FileText, Presentation, ArrowRight } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 import styles from "./AIToolsShowcase.module.css"
 
 
@@ -47,7 +48,7 @@ const aiTools= [
     features: ["Personalized picks", "Genre filtering", "Rating predictions"],
   },
   {
-    id: "therapist",
+    id: "aitherapist",
     name: "AI Therapist",
     description: "Get mental health support and guidance through AI-powered conversations.",
     icon: <Heart size={32} />,
@@ -74,9 +75,15 @@ const aiTools= [
 
 const AIToolsShowcase = () => {
   const [selectedTool, setSelectedTool] = useState(null)
+  const navigate = useNavigate();
+
+  const handleToolStart = (toolId) => {
+    navigate(`/${toolId}`);
+  };
 
   const handleToolSelect = (toolId) => {
     setSelectedTool(toolId)
+
     console.log(`Navigating to ${toolId} tool`)
   }
 
@@ -111,7 +118,7 @@ const AIToolsShowcase = () => {
                 ))}
               </ul>
 
-              <button className={styles.toolButton}>
+              <button className={styles.toolButton} onClick={()=>{handleToolStart(tool.id)}}>
                 Start Using
                 <ArrowRight size={16} />
               </button>

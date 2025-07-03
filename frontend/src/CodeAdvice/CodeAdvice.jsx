@@ -4,8 +4,14 @@ import { useState } from "react"
 import { Code, Cpu, Zap, Target, AlertCircle, Settings, Clock, Database, Palette, Plus } from "lucide-react"
 import CodeAdviceResult from "./CodeAdviceResult/CodeAdviceResult"
 import styles from "./CodeAdvice.module.css"
+import { useNavigate } from "react-router-dom"
+import { ArrowLeft } from "lucide-react"
 
 const CodeAdvice = () => {
+  const navigate = useNavigate();
+  const onBack = ()=>{
+    navigate('/');
+  }
   const [formData, setFormData] = useState({
     language: "",
     problemDescription: "",
@@ -77,9 +83,9 @@ const CodeAdvice = () => {
 function optimizedSolution(input) {
     // Time Complexity: ${formData.timeComplexity || "O(n)"}
     // Space Complexity: ${formData.spaceComplexity || "O(1)"}
-    
+
     ${formData.problemDescription ? `// Problem: ${formData.problemDescription}` : ""}
-    
+
     // Implementation here
     const result = processInput(input);
     return result;
@@ -162,13 +168,13 @@ describe('optimizedSolution', () => {
     test('handles empty input', () => {
         expect(() => optimizedSolution([])).toThrow('Invalid input');
     });
-    
+
     test('processes valid input correctly', () => {
         const input = [1, 2, 3];
         const expected = [2, 4, 6];
         expect(optimizedSolution(input)).toEqual(expected);
     });
-    
+
     test('handles large datasets efficiently', () => {
         const largeInput = Array.from({length: 10000}, (_, i) => i);
         const start = performance.now();
@@ -202,6 +208,10 @@ describe('optimizedSolution', () => {
 
   return (
     <div className={styles.container}>
+            <button className={styles.backButton} onClick={onBack} >
+          <ArrowLeft size={20} />
+          Home
+      </button>
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.headerIcon}>

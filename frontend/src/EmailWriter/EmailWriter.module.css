@@ -2,7 +2,30 @@
   min-height: 100vh;
   background: #ffffff;
 }
+.backButton {
+  position: absolute;
+  z-index:999;
+  top:50px;
+  left:50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: black;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
 
+.backButton:hover {
+  background: black;
+  transform: translateY(-2px);
+}
 .header {
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;

@@ -1,5 +1,3 @@
-import '../aitools.modules.css';
-import './fitness.modules.css';
 
 // export const AiToolsFitness = ()=>{
 //   return(

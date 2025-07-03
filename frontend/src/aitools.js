@@ -1,4 +1,4 @@
-import './aitools.modules.css';
+import './aitools.module.css';
 import { Logo, MenuFront } from './front';
 import { AiToolsEmail } from './aitools/email';
 import { AiToolsFitness } from './aitools/fitness';
@@ -16,6 +16,7 @@ import FitnessPlanner from './FitnessPlanner/FitnessPlanner';
 import EmailWriter from './EmailWriter/EmailWriter';
 import AITherapist from './AITherapist/AITherapist';
 import CodeAdvice from './CodeAdvice/CodeAdvice';
+import HoverSidebar from './bigBoi/src2/components/HoverSidebar/HoverSidebar';
 
 
 const AiToolsNavBar =()=>{
@@ -85,7 +86,8 @@ export const AiTools =({toolName})=>{
   };
   return(
     <div>
-    <AiToolsNavBar/>
+    <HoverSidebar/>
+    {/* <AiToolsNavBar/> */}
     {/* <HoverNavbar/> */}
     {/* <AiToolsFitness/> */}
     {/* <FitnessPlan/> */}

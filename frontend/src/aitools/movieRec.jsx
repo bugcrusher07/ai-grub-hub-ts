@@ -4,14 +4,12 @@ export const AiToolsMovieRecommendation = () => {
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Available genres for the multi-select
   const availableGenres = [
     "Action", "Adventure", "Animation", "Comedy", "Crime",
     "Documentary", "Drama", "Fantasy", "Horror", "Mystery",
     "Romance", "Sci-Fi", "Thriller", "Western", "Musical"
   ];
 
-  // Available streaming services
   const streamingServices = [
     "Netflix", "Amazon Prime", "Disney+", "Hulu",
     "HBO Max", "Apple TV+", "Peacock", "Paramount+"
@@ -21,15 +19,12 @@ export const AiToolsMovieRecommendation = () => {
     e.preventDefault();
         const form = new FormData(e.target);
 
-    // Get selected genres (multiple select)
     const genreSelect = document.getElementById('genres');
     const selectedGenres = Array.from(genreSelect.selectedOptions).map(option => option.value);
 
-    // Get excluded genres (multiple select)
     const excludeGenreSelect = document.getElementById('excludeGenres');
     const selectedExcludeGenres = Array.from(excludeGenreSelect.selectedOptions).map(option => option.value);
 
-    // Get streaming services (checkboxes)
     const selectedStreamingServices = streamingServices
       .filter(service => form.get(`streaming-${service.replace('+', 'Plus').replace(' ', '')}`))
       .map(service => service);

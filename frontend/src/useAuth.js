@@ -1,4 +1,3 @@
-// src/hooks/useAuth.js
 import { useSelector, useDispatch } from 'react-redux';
 import {clearError} from './authSlice';
 

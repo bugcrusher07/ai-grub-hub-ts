@@ -20,8 +20,14 @@ import {
 } from "lucide-react"
 import TherapyResult from "./TherapyResult/TherapyResult"
 import styles from "./AITherapist.module.css"
+import { useNavigate } from "react-router-dom"
+import { ArrowLeft } from "lucide-react"
 
 const AITherapist = () => {
+      const navigate = useNavigate();
+  const onBack = ()=>{
+    navigate('/');
+  }
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -138,6 +144,10 @@ const AITherapist = () => {
 
   return (
     <div className={styles.container}>
+       <button className={styles.backButton} onClick={onBack} >
+          <ArrowLeft size={20} />
+          Home
+        </button>
       <div className={styles.header}>
         <div className={styles.backgroundElements}>
           <div className={styles.floatingElement} style={{ "--delay": "0s", "--x": "10%", "--y": "20%" }}>

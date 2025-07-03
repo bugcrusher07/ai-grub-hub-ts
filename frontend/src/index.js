@@ -15,31 +15,11 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { fetchUser } from './authSlice';
 import HomePage from './bigBoi/src2/pages/HomePage';
-// import EmailResult from './EmailWriter/EmailResult/EmailResult';
-import FitnessPlanner from './FitnessPlanner/FitnessPlanner';
+import { useAuth } from './useAuth';
 
-const HomePage2 = () => {
-  const navigate = useNavigate();
-
-const handleLogin = () => {
-    navigate('/auth');
-  };
-
-  return (
-    < MainApp />
-  );
-};
-
-// Your dashboard component (the page you want to navigate to after login)
-// const DashboardPage2 = () => {
-  // return (
-    // < AuthApp />
-  // );
-// };
-
-// Main App component
-const App2 = () => {
+const App = () => {
  const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -52,7 +32,7 @@ const App2 = () => {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/fitness" element={<AiTools toolName="fitness" />} />
         <Route path="/email" element={<AiTools toolName="email" />}/>
-        <Route path="/advice" element={<AiTools toolName="advice" />}/>
+        <Route path="/aitherapist" element={<AiTools toolName="advice" />}/>
         <Route path="/movie" element={<AiTools toolName="movie" />}/>
         <Route path="/code" element={<AiTools toolName="code" />}/>
         <Route path="/diet" element={<AiTools toolName="diet" />}/>
@@ -67,7 +47,7 @@ const App2 = () => {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
      <Provider store={store}>
-    <App2 />
+    <App />
   </Provider>
 );
 

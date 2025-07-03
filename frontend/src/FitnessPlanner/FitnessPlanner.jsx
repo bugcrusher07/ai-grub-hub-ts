@@ -1,11 +1,16 @@
-"use client"
-
 import { useState } from "react"
 import { Zap, Target, Sparkles, ArrowRight, User, Activity, Ruler, Clock } from "lucide-react"
 import FitnessPlan from "./FitnessPlan/FitnessPlan"
 import styles from "./FitnessPlanner.module.css"
+import {ArrowLeft} from "lucide-react";
+import {useNavigate} from 'react-router-dom';
 
 const FitnessPlanner = () => {
+  const navigate = useNavigate();
+  const onBack = ()=>{
+    navigate('/');
+  }
+
   const [formData, setFormData] = useState({
     bodyweight: "",
     height: "",
@@ -80,6 +85,10 @@ const generateFitnessPlan = async () => {
 
   return (
     <div className={styles.container}>
+       <button className={styles.backButton} onClick={onBack} >
+          <ArrowLeft size={20} />
+          Home
+        </button>
       <div className={styles.hero}>
         <div className={styles.heroContent}>
           <div className={styles.heroIcon}>

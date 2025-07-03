@@ -57,17 +57,14 @@ const AuthPage = () => {
     if (!validateForm()) return
 
     setIsLoading(true)
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000))
     setIsLoading(false)
 
-    // Handle successful authentication here
     console.log("Authentication successful", formData)
   }
 
   const handleSocialLogin = async (provider) => {
     setIsLoading(true)
-    // Simulate social login
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsLoading(false)
 

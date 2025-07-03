@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../aitools.modules.css';
+import '../aitools.module.css';
 import './fitness.modules.css';
 import './fitness_style.css';
 

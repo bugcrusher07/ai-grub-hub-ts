@@ -1,11 +1,15 @@
-"use client"
-
 import { useState } from "react"
 import { Mail, Send, Sparkles, ArrowRight, User, MessageSquare, Target, Clock, FileText } from "lucide-react"
 import EmailResult from "./EmailResult/EmailResult"
 import styles from "./EmailWriter.module.css"
+import { useNavigate } from "react-router-dom"
+import { ArrowLeft } from "lucide-react"
 
 const EmailWriter = () => {
+     const navigate = useNavigate();
+  const onBack = ()=>{
+    navigate('/');
+  }
   const [formData, setFormData] = useState({
     emailType: "",
     tone: "",
@@ -89,10 +93,9 @@ const generateEmail = async () => {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    const data = await res.json(); // Parse the JSON response
-    console.log('API Response:', data); // Debug log
+    const data = await res.json();
+    console.log('API Response:', data);
 
-    // Transform the data to match what EmailResult expects
     const emailData = {
       subject: data.content.subject || formData.subject,
       body: data.content.body || data.content,
@@ -123,6 +126,10 @@ const generateEmail = async () => {
 
   return (
     <div className={styles.container}>
+      <button className={styles.backButton} onClick={onBack} >
+          <ArrowLeft size={20} />
+          Home
+        </button>
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.headerIcon}>

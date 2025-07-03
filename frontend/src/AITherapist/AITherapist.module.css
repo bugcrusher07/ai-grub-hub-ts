@@ -3,7 +3,30 @@
   background: linear-gradient(135deg, #fef7f0 0%, #fdf2f8 50%, #f0f9ff 100%);
   position: relative;
 }
+.backButton {
+  position: absolute;
+  z-index:999;
+  top:50px;
+  left:50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
 
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
 .header {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 25%, #ec4899 50%, #8b5cf6 75%, #06b6d4 100%);
   background-size: 400% 400%;

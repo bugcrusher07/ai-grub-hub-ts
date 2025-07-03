@@ -16,7 +16,6 @@ export const SignInPrompt = ({ isOpen, onClose, onSignIn }) => {
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true)
-      // Cycle through features
       const interval = setInterval(() => {
         setCurrentFeature((prev) => (prev + 1) % features.length)
       }, 2000)

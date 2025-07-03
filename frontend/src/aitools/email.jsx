@@ -1,4 +1,4 @@
-import '../aitools.modules.css';
+import '../aitools.module.css';
 import { useState, useRef } from 'react';
 
 export const AiToolsEmail = () => {

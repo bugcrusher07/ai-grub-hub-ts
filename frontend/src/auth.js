@@ -1,5 +1,5 @@
-import './auth.css';
 import React, { useRef, useEffect, useState } from 'react';
+
 
  export const MenuBLogo = () => {
   const [isOpen, setIsOpen] = useState(false);

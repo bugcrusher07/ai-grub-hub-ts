@@ -4,6 +4,9 @@ import HeroSection from "../components/HeroSection/HeroSection"
 import AIToolsShowcase from "../components/AIToolsShowcase/AIToolsShowcase"
 import HoverSidebar from "../components/HoverSidebar/HoverSidebar"
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner"
+import { useAuth } from "../../../useAuth"
+import { SignInPrompt } from "../../../signInPrompt"
+import { useState } from "react"
 
 const FeaturesSection = lazy(() => import("../components/FeaturesSection/FeaturesSection"))
 const PricingSection = lazy(() => import("../components/PricingSection/PricingSection"))
@@ -13,12 +16,14 @@ const FAQSection = lazy(() => import("../components/FAQSection/FAQSection"))
 const Footer = lazy(() => import("../components/Footer/Footer"))
 
   const HomePage =()=>{
+  const [showSignInPrompt,setShowSignInPrompt] = useState(true);
+  const {user,loading,error,setError} = useAuth();
   return (
     <div className="homepage">
+      {(showSignInPrompt)&&(loading===false) && ((error) || (!user)) &&<SignInPrompt isOpen={true} onClose={()=>{setShowSignInPrompt(false)}}/>}
       <Header />
       <HeroSection />
       <AIToolsShowcase />
-
       <Suspense fallback={<LoadingSpinner />}>
         <FeaturesSection />
         <PricingSection />
@@ -27,7 +32,6 @@ const Footer = lazy(() => import("../components/Footer/Footer"))
         <FAQSection />
         <Footer />
       </Suspense>
-
       <HoverSidebar />
     </div>
   )
