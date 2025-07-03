@@ -68,139 +68,46 @@ const CodeAdvice = () => {
   const generateAdvice = async () => {
     setIsGenerating(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 3000))
-
-    // Mock generated advice
-    const mockAdvice = {
-      title: "Code Optimization Recommendations",
-      summary: "Based on your requirements, here are optimized solutions and best practices for your code.",
-      sections: [
-        {
-          title: "Optimized Solution",
-          type: "code",
-          content: `// Optimized ${formData.language} solution
-function optimizedSolution(input) {
-    // Time Complexity: ${formData.timeComplexity || "O(n)"}
-    // Space Complexity: ${formData.spaceComplexity || "O(1)"}
-
-    ${formData.problemDescription ? `// Problem: ${formData.problemDescription}` : ""}
-
-    // Implementation here
-    const result = processInput(input);
-    return result;
-}
-
-// Helper function
-function processInput(data) {
-    // Efficient processing logic
-    return data.map(item => item * 2);
-}`,
-        },
-        {
-          title: "Key Improvements",
-          type: "list",
-          content: [
-            "Reduced time complexity from O(n²) to O(n) using hash map lookup",
-            "Eliminated unnecessary nested loops",
-            "Added proper error handling and input validation",
-            "Implemented memory-efficient data structures",
-            "Applied modern ES6+ features for cleaner syntax",
-          ],
-        },
-        {
-          title: "Performance Analysis",
-          type: "analysis",
-          content: {
-            timeComplexity: formData.timeComplexity || "O(n)",
-            spaceComplexity: formData.spaceComplexity || "O(1)",
-            improvements: [
-              { metric: "Execution Time", before: "150ms", after: "45ms", improvement: "70%" },
-              { metric: "Memory Usage", before: "2.5MB", after: "1.2MB", improvement: "52%" },
-              { metric: "Code Lines", before: "85", after: "42", improvement: "51%" },
-            ],
-          },
-        },
-        {
-          title: "Best Practices Applied",
-          type: "practices",
-          content: [
-            {
-              title: "Error Handling",
-              description: "Added comprehensive try-catch blocks and input validation",
-              code: "if (!input || input.length === 0) throw new Error('Invalid input');",
-            },
-            {
-              title: "Code Readability",
-              description: "Used descriptive variable names and added meaningful comments",
-              code: "const processedResults = data.filter(isValidItem);",
-            },
-            {
-              title: "Performance Optimization",
-              description: "Implemented efficient algorithms and data structures",
-              code: "const lookup = new Map(); // O(1) lookup time",
-            },
-          ],
-        },
-        {
-          title: "Alternative Approaches",
-          type: "alternatives",
-          content: [
-            {
-              title: "Recursive Solution",
-              pros: ["Elegant and readable", "Natural for tree-like problems"],
-              cons: ["Higher space complexity", "Risk of stack overflow"],
-              useCase: "When dealing with hierarchical data structures",
-            },
-            {
-              title: "Iterative Solution",
-              pros: ["Lower space complexity", "Better performance"],
-              cons: ["More complex logic", "Harder to understand"],
-              useCase: "When performance is critical and data is large",
-            },
-          ],
-        },
-        {
-          title: "Testing Recommendations",
-          type: "testing",
-          content: `// Unit tests for the solution
-describe('optimizedSolution', () => {
-    test('handles empty input', () => {
-        expect(() => optimizedSolution([])).toThrow('Invalid input');
-    });
-
-    test('processes valid input correctly', () => {
-        const input = [1, 2, 3];
-        const expected = [2, 4, 6];
-        expect(optimizedSolution(input)).toEqual(expected);
-    });
-
-    test('handles large datasets efficiently', () => {
-        const largeInput = Array.from({length: 10000}, (_, i) => i);
-        const start = performance.now();
-        optimizedSolution(largeInput);
-        const end = performance.now();
-        expect(end - start).toBeLessThan(100); // Should complete in <100ms
-    });
-});`,
-        },
-      ],
-      metadata: {
-        language: formData.language,
-        complexity: {
-          time: formData.timeComplexity || "O(n)",
-          space: formData.spaceComplexity || "O(1)",
-        },
-        style: formData.codeStyle,
-        frameworks: formData.frameworks,
-        generatedAt: new Date().toISOString(),
+     try {
+    const res = await fetch('http://localhost:3000/api/code', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify(formData)
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    setGeneratedAdvice(mockAdvice)
+    const data = await res.json();
+    console.log('API Response:', data);
+
+    const codeAdviceData = {
+      title: data.content.title || `${formData.language} Code Optimization`,
+      summary: data.content.summary || 'Code analysis and optimization',
+      metadata: {
+        language: data.content.metadata.language || formData.language,
+        complexity: {
+          time: data.content.metadata.complexity.time || 'O(n)',
+          space: data.content.metadata.complexity.space || 'O(1)'
+        },
+        generatedAt: data.content.metadata.generatedAt || new Date().toISOString()
+      },
+      sections: data.content.sections || []
+    };
+
+    setGeneratedAdvice(codeAdviceData);
+
     setIsGenerating(false)
     setShowResult(true)
-  }
+  } catch (error) {
+    console.error('Error generating code advice:', error);
+    alert('Failed to generate code advice. Please try again.');
+  } finally {
+    setIsGenerating(false);
+  }}
 
   if (showResult && generatedAdvice) {
     return <CodeAdviceResult advice={generatedAdvice} onBack={() => setShowResult(false)} />
@@ -232,7 +139,6 @@ describe('optimizedSolution', () => {
           </div>
 
           <div className={styles.formGrid}>
-            {/* Programming Language - Required */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Code size={16} />
@@ -254,7 +160,6 @@ describe('optimizedSolution', () => {
               </div>
             </div>
 
-            {/* Problem Description - Required */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Target size={16} />
@@ -270,7 +175,6 @@ describe('optimizedSolution', () => {
               />
             </div>
 
-            {/* Code Context - Optional */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Settings size={16} />
@@ -286,7 +190,6 @@ describe('optimizedSolution', () => {
               />
             </div>
 
-            {/* Desired Output - Required */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Zap size={16} />
@@ -302,7 +205,6 @@ describe('optimizedSolution', () => {
               />
             </div>
 
-            {/* Error Messages - Optional */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <AlertCircle size={16} />
@@ -318,7 +220,6 @@ describe('optimizedSolution', () => {
               />
             </div>
 
-            {/* Frameworks - Optional */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Plus size={16} />
@@ -334,7 +235,6 @@ describe('optimizedSolution', () => {
               />
             </div>
 
-            {/* Time Complexity - Optional */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Clock size={16} />
@@ -355,7 +255,6 @@ describe('optimizedSolution', () => {
               </select>
             </div>
 
-            {/* Space Complexity - Optional */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Database size={16} />
@@ -376,7 +275,6 @@ describe('optimizedSolution', () => {
               </select>
             </div>
 
-            {/* Code Style - Optional */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Palette size={16} />
@@ -397,7 +295,6 @@ describe('optimizedSolution', () => {
               </div>
             </div>
 
-            {/* Additional Constraints - Optional */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Cpu size={16} />

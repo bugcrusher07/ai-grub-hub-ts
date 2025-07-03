@@ -63,20 +63,7 @@ const EmailWriter = () => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  // const generateEmail = async () => {
-  //   setIsGenerating(true)
-  //     const res = await fetch('http://localhost:3000/api/email', {
-  //       method: 'POST',
-  //       headers: { // Fixed 'header' to 'headers'
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(formData)
-  //     });
 
-  //   setGeneratedEmail(res)
-  //   setIsGenerating(false)
-  //   setShowResult(true)
-  // }
 const generateEmail = async () => {
   setIsGenerating(true)
 
@@ -114,7 +101,6 @@ const generateEmail = async () => {
 
   } catch (error) {
     console.error('Error generating email:', error);
-    // Handle error - show error message to user
     alert('Failed to generate email. Please try again.');
   } finally {
     setIsGenerating(false);
@@ -150,7 +136,6 @@ const generateEmail = async () => {
           </div>
 
           <div className={styles.formGrid}>
-            {/* Email Type */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <FileText size={16} />
@@ -171,7 +156,6 @@ const generateEmail = async () => {
               </div>
             </div>
 
-            {/* Tone */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <MessageSquare size={16} />
@@ -192,7 +176,6 @@ const generateEmail = async () => {
               </div>
             </div>
 
-            {/* Recipient */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <User size={16} />
@@ -213,7 +196,6 @@ const generateEmail = async () => {
               </select>
             </div>
 
-            {/* Subject */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Target size={16} />
@@ -228,7 +210,6 @@ const generateEmail = async () => {
               />
             </div>
 
-            {/* Main Purpose */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Sparkles size={16} />
@@ -244,7 +225,6 @@ const generateEmail = async () => {
               />
             </div>
 
-            {/* Key Points */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>Key Points to Include</label>
               <textarea
@@ -256,7 +236,6 @@ const generateEmail = async () => {
               />
             </div>
 
-            {/* Length */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>
                 <Clock size={16} />
@@ -276,7 +255,6 @@ const generateEmail = async () => {
               </div>
             </div>
 
-            {/* Context */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>Additional Context</label>
               <textarea
@@ -288,7 +266,6 @@ const generateEmail = async () => {
               />
             </div>
 
-            {/* Call to Action */}
             <div className={styles.inputGroup}>
               <label className={styles.label}>Call to Action</label>
               <input
