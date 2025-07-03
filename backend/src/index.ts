@@ -45,13 +45,15 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server is running');
 });
 
+
 app.post('/fitness-plan', async (req: Request, res: Response) => {
-  console.log("fitness plan is executed ");
+  console.log("fitness plan is executed");
   try {
     const params: FitnessPlanParams = req.body;
     const result = await generateFitnessPlan(params);
     res.json(result);
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
       content: '',
@@ -59,13 +61,12 @@ app.post('/fitness-plan', async (req: Request, res: Response) => {
     });
   }
 });
-
 app.post('/email',async (req:Request,res:Response)=>{
   console.log("email is executed");
   try {
     const params: EmailParams = req.body;
     const result = await generateEmails(params);
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -97,7 +98,7 @@ app.post('/code',async (req:Request,res:Response)=>{
   try {
     const params: CodeParams = req.body;
     const result = await generateCode(params);
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     console.log(error);
     res.status(500).json({
