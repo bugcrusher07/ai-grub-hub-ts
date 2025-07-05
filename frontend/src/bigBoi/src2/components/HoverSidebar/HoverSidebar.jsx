@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react"
 import { Home, Settings, User, HelpCircle, Mail, Bell, ChevronLeft, ChevronRight } from "lucide-react"
 import styles from "./HoverSidebar.module.css"
+import { useAuth } from "../../../../useAuth"
 
 const HoverSidebar = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const {user,loading,error} =useAuth();
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -30,12 +32,12 @@ const HoverSidebar = () => {
   }, [])
 
   const sidebarItems = [
-    { icon: <Home size={20} />, label: "Dashboard", href: "#dashboard" },
-    { icon: <User size={20} />, label: "Profile", href: "#profile" },
-    { icon: <Settings size={20} />, label: "Settings", href: "#settings" },
-    { icon: <Bell size={20} />, label: "Notifications", href: "#notifications" },
-    { icon: <Mail size={20} />, label: "Messages", href: "#messages" },
-    { icon: <HelpCircle size={20} />, label: "Help & Support", href: "#help" },
+    { icon: <Home size={20} />, label: "Dashboard", href: "dashboard" },
+    { icon: <User size={20} />, label: "Profile", href: "dashboard" },
+    { icon: <Settings size={20} />, label: "Settings", href: "dashboard" },
+    { icon: <Bell size={20} />, label: "Notifications", href: "dashboard" },
+    { icon: <Mail size={20} />, label: "Messages", href: "dashboard" },
+    { icon: <HelpCircle size={20} />, label: "Help & Support", href: "dashboard" },
   ]
 
   return (

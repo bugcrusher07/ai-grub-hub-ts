@@ -18,20 +18,17 @@ export const UserProfile = ({ User }) => {
   const [isDetails, setIsDetails] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
 
-  // Use useEffect to set state values based on props
   useEffect(() => {
     if (!User) {
       setIsDetails(false);
       return;
     }
-    // Set email, username, and date
     setEmail(User.email || null);
     setUsername(User.username || null);
     setDate(User.createdAt || null);
     setTokens(User.tokens || 0);
     setPlan(User.subscription || 'free');
 
-    // Check if all required fields are valid
     const allFieldsValid = User.email && User.username && User.createdAt;
     setIsDetails(allFieldsValid);
   }, [User]);
@@ -157,7 +154,6 @@ const MySVG = ({ handleClick }) => {
 export default MySVG;
 
 const SearchBar = ({ onClick }) => {
-  // Define style constants first before using them in useState
   const noInputStyle = {
     display: 'none',
   };
@@ -165,12 +161,10 @@ const SearchBar = ({ onClick }) => {
     display: 'block',
   };
 
-  // Now use the constants in useState
   const [style, setStyle] = useState(noInputStyle);
   const [input, setInput] = useState('');
   const [hasResults, setHasResults] = useState(true);
 
-  // Function to update the `hasResults` state
   const returnQueryResult = (filteredTools) => {
     setHasResults(filteredTools.length > 0);
   };

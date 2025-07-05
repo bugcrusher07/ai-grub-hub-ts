@@ -1,4 +1,4 @@
-import './aitools.module.css';
+// import './aitools.module.css';
 import { Logo, MenuFront } from './front';
 import { AiToolsEmail } from './aitools/email';
 import { AiToolsFitness } from './aitools/fitness';
@@ -21,7 +21,6 @@ import HoverSidebar from './bigBoi/src2/components/HoverSidebar/HoverSidebar';
 
 const AiToolsNavBar =()=>{
   console.log("use effect is rendering")
-  // const [userId,setUserId]=useState(null);
   const { user, loading, error } = useUser();
 
 

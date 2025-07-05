@@ -1,6 +1,6 @@
 "use client"
 
-import { Menu, X } from "lucide-react"
+import { Menu, X,User } from "lucide-react"
 import styles from "./Header.module.css"
 import { useNavigate } from "react-router-dom"
 import  { useState, useRef, useEffect } from "react";
@@ -24,7 +24,7 @@ const Avatar = ({ user }) => {
   return (
     <div className={styles.avatarWrapper} ref={popupRef}>
       <img
-        src={user?.image || "/default-avatar.png"}
+        src={user?.image || <User size={16}/>}
         alt="U"
         className={styles.avatarImage}
         onClick={togglePopup}
@@ -63,7 +63,7 @@ const Header = ({user}) => {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  const User = {
+  const User= {
   name: "John Doe",
   image: "/john-avatar.jpg",
   createdAt: "2024-02-20T12:34:00Z",

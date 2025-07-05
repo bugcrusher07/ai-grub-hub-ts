@@ -16,6 +16,7 @@ import store from './redux/store';
 import { fetchUser } from './authSlice';
 import HomePage from './bigBoi/src2/pages/HomePage';
 import { useAuth } from './useAuth';
+import ScrollToTop from './scrollToTop';
 
 const App = () => {
  const dispatch = useDispatch();
@@ -27,15 +28,14 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/fitness" element={<AiTools toolName="fitness" />} />
         <Route path="/email" element={<AiTools toolName="email" />}/>
         <Route path="/aitherapist" element={<AiTools toolName="advice" />}/>
-        <Route path="/movie" element={<AiTools toolName="movie" />}/>
         <Route path="/code" element={<AiTools toolName="code" />}/>
-        <Route path="/diet" element={<AiTools toolName="diet" />}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         {/* <Route path="/emailresult" element={<EmailResult/>} /> */}
       </Routes>
