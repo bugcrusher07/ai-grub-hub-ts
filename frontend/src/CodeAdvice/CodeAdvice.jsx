@@ -69,7 +69,7 @@ const CodeAdvice = () => {
     setIsGenerating(true)
 
      try {
-    const res = await fetch('http://localhost:3000/api/code', {
+    const res = await fetch('https://ai-grub-hub-ts-backend.vercel.app/api/code', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -53,7 +53,7 @@ const generateFitnessPlan = async () => {
   setIsGenerating(true);
 
   try {
-    const res = await fetch('http://localhost:3000/api/fitness-plan', {
+    const res = await fetch('https://ai-grub-hub-ts-backend.vercel.app/api/fitness-plan', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
