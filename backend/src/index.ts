@@ -27,7 +27,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: 'https://ai-grub-hub-ts.vercel.app/',
+  origin: 'https://ai-grub-hub-ts.vercel.app',
   credentials:true,
 
 }));
