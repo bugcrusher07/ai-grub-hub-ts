@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import path from "path";
 import axios from 'axios';
 import { generateFitnessPlan,FitnessPlanParams } from './aitools/fitness';
@@ -16,7 +16,7 @@ import { connectDB } from './db';
 
 export const JWT_SECRET = process.env.JWT_SECRET || "bitches dis da secretkey";
 
-dotenv.config();
+// dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 5000;
