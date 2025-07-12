@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchUser = createAsyncThunk('auth/fetchUser', async (_, thunkAPI) => {
   try {
-    const response = await fetch('/api/auth/me', {
+    const response = await fetch('/api/api/auth/me', {
       credentials: 'include'
     });
 
