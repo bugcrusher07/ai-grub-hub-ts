@@ -69,7 +69,7 @@ const CodeAdvice = () => {
     setIsGenerating(true)
 
      try {
-    const res = await fetch('https://ai-grub-hub-ts-backend.vercel.app/api/code', {
+    const res = await fetch('http://aibackend-env.eba-wsmaqn2m.us-east-1.elasticbeanstalk.com/api/code', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

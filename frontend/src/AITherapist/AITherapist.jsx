@@ -128,15 +128,52 @@ const AITherapist = () => {
     }))
   }
 
+
+
+
   const generateTherapyPlan = async () => {
-    setIsGenerating(true)
+  setIsGenerating(true);
 
+  try {
+    const res = await fetch('http://aibackend-env.eba-wsmaqn2m.us-east-1.elasticbeanstalk.com//therapy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
 
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
 
-    // setGeneratedPlan(mockPlan)
-    setIsGenerating(false)
-    setShowResult(true)
+    const data = await res.json();
+    console.log('API Response:', data);
+
+    const therapyPlanData = {
+      title: data.content.title || `Personalized Therapy Plan for ${formData.name}`,
+      summary: data.content.summary || 'Comprehensive mental health support plan',
+      metadata: {
+        clientName: data.content.metadata.clientName || formData.name,
+        age: data.content.metadata.age || formData.age,
+        primaryConcern: data.content.metadata.primaryConcern || formData.primaryConcern,
+        sessionType: data.content.metadata.sessionType || formData.sessionType,
+        timeframe: data.content.metadata.timeframe || formData.timeframe,
+        generatedAt: data.content.metadata.generatedAt || new Date().toISOString()
+      },
+      sections: data.content.sections || []
+    };
+
+    setGeneratedPlan(therapyPlanData);
+    setShowResult(true);
+
+  } catch (error) {
+    console.error('Error generating therapy plan:', error);
+    alert('Failed to generate therapy plan. Please try again.');
+  } finally {
+    setIsGenerating(false);
   }
+};
 
   if (showResult && generatedPlan) {
     return <TherapyResult plan={generatedPlan} onBack={() => setShowResult(false)} />

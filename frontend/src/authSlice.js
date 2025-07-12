@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchUser = createAsyncThunk('auth/fetchUser', async (_, thunkAPI) => {
   try {
-    const response = await fetch('https://ai-grub-hub-ts-backend.vercel.app/api/auth/me', {
+    const response = await fetch('http://aitoolsbackend-env.eba-dkiepihm.eu-north-1.elasticbeanstalk.com/api/auth/me', {
       credentials: 'include'
     });
 
