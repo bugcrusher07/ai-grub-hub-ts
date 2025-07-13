@@ -68,7 +68,7 @@ const generateEmail = async () => {
   setIsGenerating(true)
 
   try {
-    const res = await fetch('http://aibackend-env.eba-wsmaqn2m.us-east-1.elasticbeanstalk.com/api/email', {
+    const res = await fetch('/api/email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

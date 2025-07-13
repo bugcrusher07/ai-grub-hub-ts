@@ -135,7 +135,7 @@ const AITherapist = () => {
   setIsGenerating(true);
 
   try {
-    const res = await fetch('http://aibackend-env.eba-wsmaqn2m.us-east-1.elasticbeanstalk.com//therapy', {
+    const res = await fetch('/api/therapy', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
