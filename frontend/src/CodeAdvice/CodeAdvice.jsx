@@ -69,7 +69,7 @@ const CodeAdvice = () => {
     setIsGenerating(true)
 
      try {
-    const res = await fetch('/api/api/code', {
+    const res = await fetch('/api/code', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
