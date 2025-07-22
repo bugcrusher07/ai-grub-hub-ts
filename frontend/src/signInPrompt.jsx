@@ -32,8 +32,15 @@ export const SignInPrompt = ({ isOpen, onClose, onSignIn }) => {
   }
 
   const handleSocialSignIn = (provider) => {
-    console.log(`Sign in with ${provider}`)
-    onSignIn?.(provider)
+
+    // onSignIn?.(provider)
+    if ( provider =="email"){
+      window.location.href("/auth");
+    }else if (provider = "google"){
+      widnow.alert("This function isn't implemented at this time, please use email");
+    }else{
+      widnow.alert("This function isn't implemented at this time, please use email");
+    }
   }
 
   if (!isOpen) return null
