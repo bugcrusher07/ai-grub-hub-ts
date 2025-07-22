@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
 import { X, Sparkles, Zap, Star, ArrowRight, Mail, Github, Chrome } from "lucide-react"
 import styles from './signInPrompt.module.css';
+import { useNavigate } from "react-router-dom";
 
 export const SignInPrompt = ({ isOpen, onClose, onSignIn }) => {
   const [isVisible, setIsVisible] = useState(false)
   const [currentFeature, setCurrentFeature] = useState(0)
+  const navigate = useNavigate();
 
   const features = [
     { icon: "🚀", text: "Unlock AI-powered tools" },
@@ -35,11 +37,11 @@ export const SignInPrompt = ({ isOpen, onClose, onSignIn }) => {
 
     // onSignIn?.(provider)
     if ( provider =="email"){
-      window.location.href("/auth");
+      navigate('/auth');
     }else if (provider = "google"){
-      widnow.alert("This function isn't implemented at this time, please use email");
+      window.alert("This function isn't implemented at this time, please use email");
     }else{
-      widnow.alert("This function isn't implemented at this time, please use email");
+      window.alert("This function isn't implemented at this time, please use email");
     }
   }
 
