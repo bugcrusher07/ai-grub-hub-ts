@@ -135,7 +135,7 @@ const AITherapist = () => {
   setIsGenerating(true);
 
   try {
-    const res = await fetch('/api/therapy', {
+    const res = await fetch('/api/therapy-advice', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
