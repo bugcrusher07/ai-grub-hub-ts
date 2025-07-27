@@ -37,7 +37,7 @@ export const AiToolsDietPlan = () => {
   async function handleSubmit(params) {
     setIsLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/diet', {
+      const res = await fetch('/api/diet', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

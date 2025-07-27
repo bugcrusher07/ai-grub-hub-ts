@@ -46,7 +46,7 @@ async function handleSignInFunction(e){
 
 async  function handleSignIn(params){
   try{
-    const loginAuthRes = await fetch(`http://localhost:3000/api/api/auth/login`,{
+    const loginAuthRes = await fetch(`/api/api/auth/login`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json',

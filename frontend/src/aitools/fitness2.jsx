@@ -81,7 +81,7 @@ export function FitnessPlan2() {
         message,
       };
 
-      const res = await fetch(`http://localhost:3000/api/fitness-plan`, {
+      const res = await fetch(`/api/fitness-plan`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

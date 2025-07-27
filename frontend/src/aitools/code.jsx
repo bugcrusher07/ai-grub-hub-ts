@@ -36,7 +36,7 @@ export const AiToolsCodeSolver = () => {
   async function handleSubmit(params) {
     setIsLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/code', {
+      const res = await fetch('/api/code', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

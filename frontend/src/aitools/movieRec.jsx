@@ -47,7 +47,7 @@ export const AiToolsMovieRecommendation = () => {
   async function handleSubmit(params) {
     setIsLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/movie', {
+      const res = await fetch('/api/movie', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
