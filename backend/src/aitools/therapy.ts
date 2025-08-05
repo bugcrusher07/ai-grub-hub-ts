@@ -161,6 +161,7 @@ Important Notes:
       //     generatedAt: new Date().toISOString()
       //   }
       // };
+      console.log("changes to test if railway is working")
     } catch (e) {
       console.error("Error parsing therapy plan:", e);
       throw new Error("Failed to parse therapy plan");
