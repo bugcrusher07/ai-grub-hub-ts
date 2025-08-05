@@ -11,8 +11,8 @@ export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
-  subscription: string; // Add this
-  tokens: number; // Add this
+  subscription: string;
+  tokens: number;
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
@@ -21,8 +21,8 @@ const UserSchema = new Schema<IUser>(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    subscription: { type: String, default: 'free' }, // Add this with default value
-    tokens: { type: Number, default: 200 }, // Add this with default value
+    subscription: { type: String, default: 'free' },
+    tokens: { type: Number, default: 200 },
   },
   {
     timestamps: true,
@@ -35,10 +35,9 @@ const GuestSchema = new Schema<IGuest>(
     lastActive: { type: Date, default: Date.now },
     isAnonymous:{type:Boolean,default:true},
   },
-  { timestamps: true } // This adds createdAt and updatedAt automatically
+  { timestamps: true }
 
 )
-// Hash password before saving
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
@@ -53,12 +52,11 @@ UserSchema.pre('save', async function (next) {
   }
 });
 
-// Method to compare passwords
 UserSchema.methods.comparePassword = async function (
   candidatePassword: string
 ): Promise<boolean> {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-export default mongoose.model<IUser>('User', UserSchema);
+export const User = mongoose.model<IUser>('User', UserSchema);
 export const GuestUser = mongoose.model<IGuest>("GuestUser",GuestSchema);

@@ -5,7 +5,6 @@ import path from "path";
 import axios from 'axios';
 import { generateFitnessPlan,FitnessPlanParams } from './aitools/fitness';
 import { EmailParams,generateEmails } from './aitools/email';
-import { AdviceParams,generateAdvice } from './aitools/advice';
 import { generateMovieRec, MovieRecParams } from './aitools/movie';
 import { CodeParams,generateCode } from './aitools/code';
 import { DietParams,generateDietPlan } from './aitools/diet';
@@ -13,8 +12,10 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './authRoutes';
 import { authMiddleware } from './auth';
 import { connectDB } from './db';
+import { TherapyParams } from './aitools/therapyParams';
+import { generateTherapyPlan } from './aitools/therapy';
 
-export const JWT_SECRET = process.env.JWT_SECRET || "bitches dis da secretkey";
+export const JWT_SECRET = process.env.JWT_SECRET || "hjbfjav@$jhd&^&2924h";
 
 // dotenv.config();
 
@@ -25,9 +26,9 @@ app.use(cookieParser());
 
 connectDB();
 
-// Middleware
 app.use(cors({
-  origin: 'https://ai-grub-hub-ts.vercel.app',
+  origin:[ 'https://ai-grub-hub-ts.vercel.app','http://localhost:3000'],
+
   credentials:true,
 
 }));
@@ -40,7 +41,6 @@ app.get('/api/protected', authMiddleware, (req, res) => {
 });
 
 
-// Routes
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server is running');
 });
@@ -77,11 +77,11 @@ app.post('/email',async (req:Request,res:Response)=>{
   }
 })
 
-app.post('/advice',async (req:Request,res:Response)=>{
+app.post('/therapy-advice',async (req:Request,res:Response)=>{
   console.log("advce is executed");
   try {
-    const params: AdviceParams = req.body;
-    const result = await generateAdvice(params);
+    const params: TherapyParams= req.body;
+    const result = await generateTherapyPlan(params);
     res.json(result);
   } catch (error) {
     console.log(error);

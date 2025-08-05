@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import User from './user';
+import {User} from './user';
 import mongoose from 'mongoose';
 import { authMiddleware } from './auth';
 import { GuestUser } from './user';
@@ -20,13 +20,13 @@ interface GuestRegisterParams{
 
 interface UserSignInWithUsername {
   username: string;
-  email?: never; // Ensure email is not present
+  email?: never;
   password: string;
 }
 
 interface UserSignInWithEmail {
   email: string;
-  username?: never; // Ensure username is not present
+  username?: never;
   password: string;
 }
 
@@ -52,8 +52,8 @@ router.post('registerGuest',async (req:Request,res:Response)=>{
     })
      res.cookie('token', token, {
         httpOnly: true,
-        maxAge: 365 * 24 * 60 * 60 * 1000, // 30 days
-        secure: process.env.NODE_ENV === 'production', // Use secure in production,
+        maxAge: 365 * 24 * 60 * 60 * 1000,
+        secure: process.env.NODE_ENV === 'production',
         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
         domain: 'localhost',
       });
@@ -101,8 +101,8 @@ router.post('/register', async (req: Request, res: Response) => {
       // Set HTTP-only cookie
       res.cookie('token', token, {
         httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-        secure: process.env.NODE_ENV === 'production', // Use secure in production,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        secure: process.env.NODE_ENV === 'production',
         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
         domain: 'localhost',
       });
@@ -118,7 +118,6 @@ router.post('/register', async (req: Request, res: Response) => {
   }
 });
 
-// Login user
 router.post('/login', async (req: Request, res: Response) => {
   console.log('login was attempted');
   try {
@@ -129,7 +128,6 @@ router.post('/login', async (req: Request, res: Response) => {
     }: UserSignInWithEmail | UserSignInWithUsername = req.body;
     console.log(`username ${username}, email ${email} password ${password}`);
 
-    // Find user by email
     let user = null;
     if (email) {
       user = await User.findOne({ email });
@@ -141,22 +139,19 @@ router.post('/login', async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Check if password matches
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Generate JWT
     const token = jwt.sign({ id: user._id }, JWT_SECRET, {
       expiresIn: '30d',
     });
 
-    // Set HTTP-only cookie
     res.cookie('token', token, {
       httpOnly: true,
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-      secure: process.env.NODE_ENV === 'production', // Use secure in production
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === 'production',
     });
 
     res.json({
@@ -170,7 +165,6 @@ router.post('/login', async (req: Request, res: Response) => {
   }
 });
 
-// Logout user
 router.post('/logout', (req: Request, res: Response) => {
   res.cookie('token', '', {
     httpOnly: true,
@@ -179,7 +173,6 @@ router.post('/logout', (req: Request, res: Response) => {
   res.status(200).json({ message: 'Logged out successfully' });
 });
 
-// Get current user (protected route)
 router.get('/me', authMiddleware, async (req: Request, res: Response) => {
   console.log('me route executed');
   try {

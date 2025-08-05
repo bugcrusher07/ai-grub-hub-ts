@@ -20,16 +20,13 @@ export async function geminiApi(prompt: string): Promise<ResponseObject> {
       }
     });
 
-    // Attempt to parse the response as JSON if possible
     let content = response.data.candidates[0].content.parts[0].text;
     try {
-      // Try to parse the content as JSON
       let firstBracket = content.indexOf("{");
       let lastBracket = content.lastIndexOf("}");
       content = content.substring(firstBracket,lastBracket+1);
       content = JSON.parse(content);
     } catch {
-      // If parsing fails, keep the original string
     }
 
     return {
