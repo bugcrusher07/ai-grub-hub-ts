@@ -29,7 +29,7 @@ import styles from "./TherapyResult.module.css"
 const TherapyResult = ({ plan, onBack }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [completedItems, setCompletedItems] = useState(new Set())
-
+  console.log("plan.urgency level", plan.urgencyLevel, "plan.title ", plan.title);
   const toggleCompleted = (itemId) => {
     setCompletedItems((prev) => {
       const newSet = new Set(prev)

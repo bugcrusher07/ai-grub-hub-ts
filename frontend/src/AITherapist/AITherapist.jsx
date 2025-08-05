@@ -150,21 +150,8 @@ const AITherapist = () => {
     const data = await res.json();
     console.log('API Response:', data);
 
-    const therapyPlanData = {
-      title: data.content.title || `Personalized Therapy Plan for ${formData.name}`,
-      summary: data.content.summary || 'Comprehensive mental health support plan',
-      metadata: {
-        clientName: data.content.metadata.clientName || formData.name,
-        age: data.content.metadata.age || formData.age,
-        primaryConcern: data.content.metadata.primaryConcern || formData.primaryConcern,
-        sessionType: data.content.metadata.sessionType || formData.sessionType,
-        timeframe: data.content.metadata.timeframe || formData.timeframe,
-        generatedAt: data.content.metadata.generatedAt || new Date().toISOString()
-      },
-      sections: data.content.sections || []
-    };
 
-    setGeneratedPlan(therapyPlanData);
+    setGeneratedPlan(data.content);
     setShowResult(true);
 
   } catch (error) {
