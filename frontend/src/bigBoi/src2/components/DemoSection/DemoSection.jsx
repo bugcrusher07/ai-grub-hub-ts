@@ -5,6 +5,9 @@ import { Play, Pause } from "lucide-react"
 import styles from "./DemoSection.module.css"
 
 const DemoSection = () => {
+    function scrollToTools(){
+   document.getElementById("tools")?.scrollIntoView({behavior:"smooth"})
+  }
   const [isPlaying, setIsPlaying] = useState(false)
 
   const handlePlayDemo = () => {
@@ -39,18 +42,21 @@ const DemoSection = () => {
               </div>
             </div>
 
-            <button className={styles.ctaButton}>Try It Free Now</button>
+            <button onClick={scrollToTools} className={styles.ctaButton}>Try It Free Now</button>
           </div>
 
           <div className={styles.demoVideo}>
             <div className={styles.videoContainer}>
               <div className={styles.videoPlaceholder}>
-                <button className={styles.playButton} onClick={handlePlayDemo}>
-                  {isPlaying ? <Pause size={32} /> : <Play size={32} />}
-                </button>
-                <div className={styles.videoOverlay}>
-                  <span>Watch Demo</span>
-                </div>
+            <video height="100%" width="100%" controls>
+              <source  src="demo.mp4" />
+              </video>
+                {/* <button className={styles.playButton} onClick={handlePlayDemo}> */}
+                  {/* {isPlaying ? <Pause size={32} /> : <Play size={32} />} */}
+                {/* </button> */}
+                {/* <div className={styles.videoOverlay}> */}
+                  {/* <span>Watch Demo</span> */}
+                {/* </div> */}
               </div>
 
               <div className={styles.videoFeatures}>

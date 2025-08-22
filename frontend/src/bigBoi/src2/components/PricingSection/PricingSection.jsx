@@ -6,6 +6,9 @@ import styles from "./PricingSection.module.css"
 
 
 const PricingSection = () => {
+  function buyButton (){
+    window.alert("We currently do not have a payment getaway available, you can continue to use our services for free during this period")
+  }
   const [isAnnual, setIsAnnual] = useState(false)
 
   const plans = [
@@ -103,7 +106,7 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <button className={`${styles.planButton} ${plan.popular ? styles.popularButton : ""}`}>
+              <button onClick={buyButton} className={`${styles.planButton} ${plan.popular ? styles.popularButton : ""}`}>
                 {plan.buttonText}
               </button>
             </div>

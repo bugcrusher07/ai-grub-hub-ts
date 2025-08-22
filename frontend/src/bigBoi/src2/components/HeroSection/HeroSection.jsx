@@ -2,6 +2,9 @@ import { ArrowRight, Sparkles } from "lucide-react"
 import styles from "./HeroSection.module.css"
 
 const HeroSection = () => {
+  function scrollToTools(){
+   document.getElementById("tools")?.scrollIntoView({behavior:"smooth"})
+  }
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
@@ -22,11 +25,11 @@ const HeroSection = () => {
           </p>
 
           <div className={styles.actions}>
-            <button className={styles.primaryBtn}>
+            <button onClick={scrollToTools} className={styles.primaryBtn}>
               Start Free Trial
               <ArrowRight size={20} />
             </button>
-            <button className={styles.secondaryBtn}>Watch Demo</button>
+            <button onClick={scrollToTools} className={styles.secondaryBtn}>Watch Demo</button>
           </div>
 
           <div className={styles.stats}>
