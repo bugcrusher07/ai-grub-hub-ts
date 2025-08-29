@@ -28,16 +28,16 @@ const UserSchema = new Schema<IUser>(
     timestamps: true,
   }
 );
-const GuestSchema = new Schema<IGuest>(
-  {
-    uuid: { type: String, required: true, unique: true },
-    tokens: { type: Number, default: 200 },
-    lastActive: { type: Date, default: Date.now },
-    isAnonymous:{type:Boolean,default:true},
-  },
-  { timestamps: true }
+// const GuestSchema = new Schema<IGuest>(
+//   {
+//     uuid: { type: String, required: true, unique: true },
+//     tokens: { type: Number, default: 200 },
+//     lastActive: { type: Date, default: Date.now },
+//     isAnonymous:{type:Boolean,default:true},
+//   },
+//   { timestamps: true }
 
-)
+// )
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
@@ -59,4 +59,4 @@ UserSchema.methods.comparePassword = async function (
 };
 
 export const User = mongoose.model<IUser>('User', UserSchema);
-export const GuestUser = mongoose.model<IGuest>("GuestUser",GuestSchema);
+// export const GuestUser = mongoose.model<IGuest>("GuestUser",GuestSchema);

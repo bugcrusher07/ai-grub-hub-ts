@@ -15,7 +15,7 @@ import { connectDB } from './db';
 import { TherapyParams } from './aitools/therapyParams';
 import { generateTherapyPlan } from './aitools/therapy';
 
-export const JWT_SECRET = process.env.JWT_SECRET || "hjbfjav@$jhd&^&2924h";
+export const JWT_SECRET = process.env.JWT_SECRET || "a&92&fhia62&#@#*&";
 
 // dotenv.config();
 
@@ -41,6 +41,7 @@ app.get('/api/protected', authMiddleware, (req, res) => {
 });
 
 
+// Routes
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server is running');
 });

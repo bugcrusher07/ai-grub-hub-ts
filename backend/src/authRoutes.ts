@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import {User} from './user';
 import mongoose from 'mongoose';
 import { authMiddleware } from './auth';
-import { GuestUser } from './user';
+// import { GuestUser } from './user';
 // import { JWT_SECRET } from '.';
 // const {v4:uuidv4} = require("uuid");
 import { v4 } from 'uuid';
@@ -33,44 +33,43 @@ interface UserSignInWithEmail {
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
-router.post('registerGuest',async (req:Request,res:Response)=>{
-  console.log("registering a guest user");
-   if (mongoose.connection.readyState !== 1) {
-    return res.status(500).json({
-      message: 'Database connection is not ready. Try again later.',
-    });
-  }
-  try{
-  const guestID = v4();
+// router.post('registerGuest',async (req:Request,res:Response)=>{
+//   console.log("registering a guest user");
+//    if (mongoose.connection.readyState !== 1) {
+//     return res.status(500).json({
+//       message: 'Database connection is not ready. Try again later.',
+//     });
+//   }
+//   try{
+//   const guestID = v4();
 
-  const guestUser = await GuestUser.create({
-    guestID,
-  })
-  if(guestUser){
-    const token = jwt.sign({id:guestUser._id,isAnonymous:true},JWT_SECRET,{
-      expiresIn:'365d',
-    })
-     res.cookie('token', token, {
-        httpOnly: true,
-        maxAge: 365 * 24 * 60 * 60 * 1000,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-        domain: 'localhost',
-      });
+//   const guestUser = await GuestUser.create({
+//     guestID,
+//   })
+//   if(guestUser){
+//     const token = jwt.sign({id:guestUser._id,isAnonymous:true},JWT_SECRET,{
+//       expiresIn:'365d',
+//     })
+//      res.cookie('token', token, {
+//         httpOnly: true,
+//         maxAge: 365 * 24 * 60 * 60 * 1000,
+//         secure: process.env.NODE_ENV === 'production',
+//         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+//         domain: 'localhost',
+//       });
 
-      res.status(201).json({
-        _id: guestUser._id,
-        tokens:guestUser.tokens,
-        isAnyonymouse:true
-      });
-    }
-  } catch (error: any) {
-    res.status(500).json({ message: 'Server error', error: error.message });
-  }
+//       res.status(201).json({
+//         _id: guestUser._id,
+//         tokens:guestUser.tokens,
+//         isAnyonymouse:true
+//       });
+//     }
+//   } catch (error: any) {
+//     res.status(500).json({ message: 'Server error', error: error.message });
+//   }
 
 
-})
-// Register a new user
+// })
 router.post('/register', async (req: Request, res: Response) => {
   console.log('Register test is working');
   if (mongoose.connection.readyState !== 1) {
@@ -81,24 +80,20 @@ router.post('/register', async (req: Request, res: Response) => {
   try {
     const { username, email, password }: UserRegisterParams = req.body;
 
-    // Check if user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
-    // Create new user
     const user = await User.create({
       username,
       email,
       password,
     });
     if (user) {
-      // Generate JWT
       const token = jwt.sign({ id: user._id }, JWT_SECRET, {
         expiresIn: '30d',
       });
 
-      // Set HTTP-only cookie
       res.cookie('token', token, {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -176,12 +171,12 @@ router.post('/logout', (req: Request, res: Response) => {
 router.get('/me', authMiddleware, async (req: Request, res: Response) => {
   console.log('me route executed');
   try {
-    if(req.user?.isAnonymous){
-      const guestUser = await GuestUser.findById(req.user?.id).select('-lastActive')
-      if(guestUser){
-        return res.status(200).json(guestUser);
-      }
-    }
+    // if(req.user?.isAnonymous){
+    //   const guestUser = await GuestUser.findById(req.user?.id).select('-lastActive')
+    //   if(guestUser){
+    //     return res.status(200).json(guestUser);
+    //   }
+    // }
     const user = await User.findById(req.user?.id).select('-password');
     if(!user) {
       return res.status(404).json({ message: 'User not found' });

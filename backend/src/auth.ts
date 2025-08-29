@@ -16,13 +16,13 @@ declare global {
 }
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
-  console.log("the protected function is running")
+  console.log("the authMiddleware is being executed")
 
   const token = req.cookies.token;
-  console.log("token is ",token)
+  // console.log("token is ",token)
 
   if (!token) {
-    res.status(401).json({ message: 'Not authorized, no token' });
+    res.status(401).json({ message: 'Not authorized, token not found' });
     return;
   }
 
@@ -34,6 +34,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
     if(decoded){
     bigDecoded=decoded;}
     }catch(error){
+      console.log("Error while decoding auth token",error);
     }
     if(!bigDecoded){
     try{
@@ -45,9 +46,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
     }}
     // const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key" ;
 
-    // Add user from payload
     req.user = bigDecoded;
-    // req.user = decoded;
 
     next();
   } catch (error:any) {
