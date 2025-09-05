@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://ai-grub-hub-ts-production.up.railway.app/:path*"
+      "destination": "https://ai-grub-hub-ts.onrender.com/:path*"
     }
   ]
 }

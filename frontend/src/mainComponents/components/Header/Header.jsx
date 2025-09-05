@@ -63,7 +63,7 @@ const Header = ({user}) => {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  const User= {
+  const exampleUser= {
   name: "John Doe",
   image: "/john-avatar.jpg",
   createdAt: "2024-02-20T12:34:00Z",
@@ -88,8 +88,8 @@ const Header = ({user}) => {
         </nav>
 
         <div className={styles.headerActions}>
-          {!User?
-          <button onClick={()=>{navigate("/auth")}} className={styles.loginBtn}>Login</button>: <Avatar user={User}/>}
+          {!exampleUser?
+          <button onClick={()=>{navigate("/auth")}} className={styles.loginBtn}>Login</button>: <Avatar user={exampleUser}/>}
           <button onClick={scrollToPricing} className={styles.ctaBtn}>Get Started</button>
         </div>
 

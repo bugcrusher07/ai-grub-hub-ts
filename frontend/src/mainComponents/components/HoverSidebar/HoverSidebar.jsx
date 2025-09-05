@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { Home, Settings, User, HelpCircle, Mail, Bell, ChevronLeft, ChevronRight } from "lucide-react"
 import styles from "./HoverSidebar.module.css"
-import { useAuth } from "../../../../useAuth"
+// import { useAuth } from "../../../../useAuth"
+import { useAuth } from "../../../useAuth"
 
 const HoverSidebar = () => {
   const [isVisible, setIsVisible] = useState(false)

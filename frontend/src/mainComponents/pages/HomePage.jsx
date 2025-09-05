@@ -4,8 +4,8 @@ import HeroSection from "../components/HeroSection/HeroSection"
 import AIToolsShowcase from "../components/AIToolsShowcase/AIToolsShowcase"
 import HoverSidebar from "../components/HoverSidebar/HoverSidebar"
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner"
-import { useAuth } from "../../../useAuth"
-import { SignInPrompt } from "../../../signInPrompt"
+import { useAuth } from "../../useAuth"
+import { SignInPrompt } from "../../signInPrompt"
 import { useState } from "react"
 
 const FeaturesSection = lazy(() => import("../components/FeaturesSection/FeaturesSection"))

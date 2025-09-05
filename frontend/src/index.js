@@ -3,20 +3,26 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import AuthPage from './AuthPage/AuthPage';
+import AuthPage from './authPage/AuthPage';
 import reportWebVitals from './reportWebVitals';
 import { MainApp } from './front';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-import { AiTools } from './aitools';
+// import { AiTools } from './aitools';
+// import {AiTools} from './aitools'
 import Dashboard from './Dashboard/Dashboard';
 import { PaymentPage } from './payment';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { fetchUser } from './authSlice';
-import HomePage from './bigBoi/src2/pages/HomePage';
+// import HomePage from './bigBoi/src2/pages/HomePage';
+import HomePage from './mainComponents/pages/HomePage'
 import { useAuth } from './useAuth';
 import ScrollToTop from './scrollToTop';
+import FitnessPlanner from './aitools/FitnessPlanner/FitnessPlanner';
+import EmailWriter from './aitools/EmailWriter/EmailWriter';
+import CodeAdvice from './aitools/CodeAdvice/CodeAdvice';
+import AITherapist from './aitools/AITherapist/AITherapist'
 
 const App = () => {
  const dispatch = useDispatch();
@@ -32,10 +38,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/fitness" element={<AiTools toolName="fitness" />} />
-        <Route path="/email" element={<AiTools toolName="email" />}/>
-        <Route path="/aitherapist" element={<AiTools toolName="advice" />}/>
-        <Route path="/code" element={<AiTools toolName="code" />}/>
+        <Route path="/fitness" element={<FitnessPlanner />} />
+        <Route path="/email" element={<EmailWriter/>}/>
+        <Route path="/aitherapist" element={<AITherapist/>}/>
+        <Route path="/code" element={<CodeAdvice />}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         {/* <Route path="/emailresult" element={<EmailResult/>} /> */}
       </Routes>
